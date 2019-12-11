@@ -2,7 +2,7 @@
 
 ![bundlephobia badge](https://badgen.net/bundlephobia/min/react-img-modal) ![bundlephobia badge](https://badgen.net/bundlephobia/minzip/react-img-modal)
 
-[![ImgModal](https://i.ibb.co/YhVTGCZ/readtdata.png "ImgModal")](https://i.ibb.co/YhVTGCZ/readtdata.png)
+[![ImgModal](https://i.ibb.co/YhVTGCZ/readtdata.png "ImgModal")](https://i.ibb.co/MfNXqWk/modal.png)
 
 ```
 npm i react-img-modal
