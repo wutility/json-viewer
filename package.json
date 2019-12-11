@@ -1,6 +1,6 @@
 {
   "name": "react-img-modal",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "main": "build/index.cjs.js",
   "module": "build/index.esm.js",
   "files": [
