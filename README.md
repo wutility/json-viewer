@@ -9,14 +9,15 @@ npm i react-img-modal
 ### Usage
 ```js
 import ImgModal from "react-img-modal";
+import '../node_modules/react-img-modal/build/index.css';
 ```
 
 ### Examples
 ```js
 import React, { useState } from 'react';
 import { render } from "react-dom";
-import './index.css'
 import ImgModal from 'react-img-modal';
+import '../node_modules/react-img-modal/build/index.css';
 
 const App = () => {
   const [isModalOpen, setIsModalOpen] = useState(false)

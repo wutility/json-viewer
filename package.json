@@ -32,10 +32,8 @@
   ],
   "keywords": [
     "react",
-    "hooks",
-    "pagination",
-    "datatables",
-    "filter"
+    "image",
+    "modal"
   ],
   "author": "Haikel Fazzani <haikel.fazzani@gmail.com>",
   "contributors": [
