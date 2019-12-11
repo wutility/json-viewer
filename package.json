@@ -1,0 +1,67 @@
+{
+  "name": "react-img-modal",
+  "version": "0.0.1",
+  "main": "build/index.cjs.js",
+  "module": "build/index.esm.js",
+  "files": [
+    "build"
+  ],
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "clean": "rimraf -rf build/*",
+    "build-npm": "npm run clean && rollup -c"
+  },
+  "peerDependencies": {
+    "react": "16.x"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/haikelfazzani/react-img-modal.git"
+  },
+  "bugs": {
+    "url": "https://github.com/haikelfazzani/react-img-modal/issues"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
+  "keywords": [
+    "react",
+    "hooks",
+    "pagination",
+    "datatables",
+    "filter"
+  ],
+  "author": "Haikel Fazzani <haikel.fazzani@gmail.com>",
+  "contributors": [
+    {
+      "name": "Haikel Fazzani",
+      "email": "haikel.fazzani@gmail.com"
+    }
+  ],
+  "devDependencies": {
+    "@babel/cli": "^7.7.0",
+    "@babel/preset-react": "^7.7.0",
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0",
+    "react-scripts": "^3.2.0",
+    "rimraf": "^3.0.0",
+    "rollup": "^1.26.3",
+    "rollup-plugin-babel": "^4.3.3",
+    "rollup-plugin-babel-minify": "^9.1.1",
+    "rollup-plugin-cleanup": "^3.1.1",
+    "rollup-plugin-css": "^1.0.10",
+    "rollup-plugin-scss": "^1.0.2"
+  },
+  "dependencies": {
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-router-dom": "^5.1.2",
+    "react-scripts": "3.3.0"
+  }
+}

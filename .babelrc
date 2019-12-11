@@ -1,0 +1,11 @@
+{
+  "presets": [
+    [
+      "@babel/preset-react",
+      {
+        "throwIfNamespace": false, // defaults to true
+        "useSpread":false
+      }
+    ]
+  ]
+}
