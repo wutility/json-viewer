@@ -1,6 +1,7 @@
 {
   "name": "react-img-modal",
-  "version": "0.0.3",
+  "version": "0.0.4",
+  "description": "A lightweight React component modal image.",
   "main": "build/index.cjs.js",
   "module": "build/index.esm.js",
   "files": [
