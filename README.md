@@ -25,10 +25,6 @@ import '../node_modules/react-img-modal/build/index.css'; // required
 
 ### Example 1:
 ```js
-import React, { useState } from 'react';
-import ImgModal from 'react-img-modal';
-import '../node_modules/react-img-modal/build/index.css';
-
 const App = () => {
   const [isModalOpen, setIsModalOpen] = useState(false)
 

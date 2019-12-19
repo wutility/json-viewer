@@ -4,14 +4,14 @@ import './index.css'
 import ImgModal from './lib';
 
 const images = [
-  "https://i.ibb.co/nQYZpsq/npm.png",
-  "https://i.ibb.co/dLyp8k7/1662-original.jpg",
-  "https://i.ibb.co/qx6BgJJ/codesignal-featured-logo.jpg"
+  "https://i.ibb.co/mt3snt4/1.jpg",
+  "https://i.ibb.co/82rcKnq/2.jpg",
+  "https://i.ibb.co/5nw0HF0/3.jpg"
 ]
 
 const App = () => {
   const [isModalOpen, setIsModalOpen] = useState(false)
-  const [currentImgSrc, setcurrentImgSrc] = useState('')
+  const [currentImgSrc, setcurrentImgSrc] = useState(images[0])
   const [inc, setInc] = useState(0)
 
   const closeModal = (e, data) => {
@@ -44,8 +44,10 @@ const App = () => {
       <div className="images-container">
         {images.map((m) => {
           return (
-            <div className="img-hover-zoom" key={m}>
-              <img src={m} alt="smooth" onClick={(e, src) => { closeModal(e, m) }} />
+            <div className="col-3">
+              <div className="img-hover-zoom" key={m}>
+                <img src={m} alt="smooth" onClick={(e, src) => { closeModal(e, m) }} />
+              </div>
             </div>
           )
         })}
@@ -63,7 +65,6 @@ const App = () => {
       </ImgModal>
 
     </div>
-
   );
 }
 

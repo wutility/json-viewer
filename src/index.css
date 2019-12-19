@@ -1,17 +1,23 @@
 .images-container {
+  max-width: 1140px;
+  width: 1140px;
   display: flex;
   
 }
 
+.col-3 {
+  width: 25%;
+}
+
 .img-hover-zoom {  
-  width: 300px;
+  width: 100%;
   height: 250px; 
   overflow: hidden;
   cursor: pointer;
 }
 
 .img-hover-zoom img {
-  width: 300px;
+  width: 100%;
   height: 250px;
   object-fit: cover;
   transition: transform .5s ease;

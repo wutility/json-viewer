@@ -1,6 +1,6 @@
 {
   "name": "react-img-modal",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "A lightweight React component modal image.",
   "main": "build/index.cjs.js",
   "module": "build/index.esm.js",
@@ -14,6 +14,12 @@
     "eject": "react-scripts eject",
     "clean": "rimraf -rf build/*",
     "build-npm": "npm run clean && rollup -c"
+  },
+  "dependencies": {
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-router-dom": "^5.1.2",
+    "react-scripts": "3.3.0"
   },
   "peerDependencies": {
     "react": "16.x"
@@ -34,7 +40,8 @@
   "keywords": [
     "react",
     "image",
-    "modal"
+    "modal",
+    "hooks"
   ],
   "author": "Haikel Fazzani <haikel.fazzani@gmail.com>",
   "contributors": [
@@ -56,11 +63,5 @@
     "rollup-plugin-cleanup": "^3.1.1",
     "rollup-plugin-css": "^1.0.10",
     "rollup-plugin-scss": "^1.0.2"
-  },
-  "dependencies": {
-    "react": "^16.12.0",
-    "react-dom": "^16.12.0",
-    "react-router-dom": "^5.1.2",
-    "react-scripts": "3.3.0"
   }
 }

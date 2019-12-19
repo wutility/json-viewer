@@ -1,4 +1,4 @@
-.image-modal {
+.img-modal {
   display: none;
   position: fixed;
   z-index: 1;
@@ -10,7 +10,7 @@
   background-color: rgba(0, 0, 0, 0.5);
 }
 
-.img-container {
+.img-modal-body {  
   width: 100%;
   height: 100%;
   display: flex;
@@ -19,21 +19,23 @@
   align-items: center;
 }
 
-.image-modal-content {
+.img-modal-body img {
   margin: auto;
   display: block;
   width: 80%;
-  max-width: 700px;
+  max-width: 800px;
 }
 
-.caption {
+.img-modal-body .caption {
+  margin: auto;
+  max-width: 500px;
   text-align: center;
-  color: #ccc;
+  color: rgb(247, 247, 247);
   padding: 10px;
 }
 
 /* Animation */
-.image-modal-content,
+img,
 .caption {
   -webkit-animation-name: zoom;
   -webkit-animation-duration: 0.6s;
@@ -42,23 +44,13 @@
 }
 
 @-webkit-keyframes zoom {
-  from {
-    -webkit-transform: scale(0)
-  }
-
-  to {
-    -webkit-transform: scale(1)
-  }
+  from {-webkit-transform: scale(0)}
+  to {-webkit-transform: scale(1)}
 }
 
 @keyframes zoom {
-  from {
-    transform: scale(0)
-  }
-
-  to {
-    transform: scale(1)
-  }
+  from {transform: scale(0)}
+  to {transform: scale(1)}
 }
 
 /* The Close Button */
