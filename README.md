@@ -1,6 +1,8 @@
-<h1 align="center" style="width:100%">Jsnview</h1>
-<h3 align="center">Ultra Fast and lightweight Json Viewer ~3KB (0 </dependencies)</h3>
-##
+<h1 align="center" style="width:100%">🔥 Jsnview 🔥</h1>
+<h3 align="center" style="margin:0">Ultra Fast and lightweight Json Viewer ~3KB</h3>
+<h3 align="center" style="margin:0">0 Dependencies</h3>
+
+### Demos  
 [Demo Netlify](https://json-v.netlify.app/public/)  
 [Demo JSBin UMD](https://jsbin.com/bovizupahi/1/edit)  
 [Demo Codesandbox ESM](https://codesandbox.io/s/serverless-sound-igd1h)
