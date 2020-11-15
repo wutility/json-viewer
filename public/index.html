@@ -5,49 +5,79 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-  <link rel="stylesheet" href="../src/index.css">
+  <link rel="stylesheet" href="../build/index.css">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #1d1d1d;
+      color: #fff;
+      font-family: Consolas, Georgia, Times, 'Times New Roman', serif;
+      margin: 0;
+      padding: 20px;
+    }
+
+    #root {
+      background-color: #fff;
+      color: #000000;
+      border: 3px solid #000000;
+      padding: 15px;
+      border-radius: 7px;
+    }
+
+    .jsv {
+      font-size: 13px;
+      font-family: consolas;
+      min-width: 100vw;
+      min-height: 100vh;
+    }
+
+    a {
+      color: #fff
+    }
+
+    .w-100 {
+      width: 100%;
+    }
+
+    .mb-10 {
+      margin-bottom: 10px !important;
+    }
+
+    input,
+    button {
+      padding: 10px 15px;
+    }
+
+    .d-flex {display: flex; justify-content: space-between; align-items: center;}
+  </style>
 </head>
 
 <body>
-  <script src="../src/jsv.js"></script>
+  <script src="../build/index.js"></script>
 
-  <h1>Ultra lightweight Json View</h1>
-  <div id="root"></div>
-  <a href="https://github.com/haikelfazzani/json-view">Github Link</a>
+  <header class="d-flex">
+    <h1>Fast and Ultra lightweight Json Viewer ~3KB</h1>
+    <a href="https://github.com/haikelfazzani/json-view">Github Link</a>
+  </header>  
+
+  <input type="url" id="json-url" class="w-100 mb-10" placeholder="Load json from url.." />
+  <button id="btn-load" class="w-100 mb-10">Load Json</button>
+  <small class="txt-mute mb-10">URL for testing: https://jsonplaceholder.typicode.com/users</small>
+
+  <div id="root"></div>  
 
   <script>
-    let data = [
-      {
-        name: "mike",
-        price: 125.369,
-        date:'03-02-2016',
-        adress: [{ street: 'mt ville', code: 123,vip:null }],
-        cars: ['bmw', 'fiat', { k: 'aeae', v: 'ereeeeeeeee' }],
-        departement: { street: 'nx ville', code: 852.56 }        
-      },
-      {
-        name: "joe",
-        price: 785.0,
-        date:'03-02-2018',
-        adress: [{ street: 'nx ville', code: 852,vip:null }],
-        cars: ['bmw', 'fiat', { k: 'fffffff', v: 'ssssssssss' }],
-        departement: { street: 'nx ville', code: 852 }
-      }
-    ];
-
-    let data1 = {
-      name: "joe doe",
-      nvc: 785.1,
-      is:true,
-      date:'03-02-2018',
-      infos:{age: 26, birthday:'dateSun, Nov 15, 2020, 03:13 PM',adress: { street: 'nx ville', code: 852 }},      
-      cars: ['bmw', 'fiat', { k: 'fffffff', v: 'ssssssssss' }]     
-    };
-
-    // data = JSON.stringify(data)
-    // data = JSON.parse(data)
-
-    document.getElementById('root').appendChild(jsonView(data))
+    document.getElementById('btn-load').addEventListener('click', (e) => {
+      let url = document.getElementById('json-url').value || 'https://jsonplaceholder.typicode.com/users'
+      fetch(url)
+        .then(response => response.json())
+        .then(json => {
+          document.getElementById('root').appendChild(jsvView(json))
+        });
+    });
   </script>
 </body>
 
