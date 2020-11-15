@@ -11,7 +11,9 @@
 <body>
   <script src="../src/jsv.js"></script>
 
+  <h1>Ultra lightweight Json View</h1>
   <div id="root"></div>
+  <a href="https://github.com/haikelfazzani/json-view">Github Link</a>
 
   <script>
     let data = [
@@ -34,15 +36,11 @@
     ];
 
     let data1 = {
-      name: "joe biden",
-      username: "keep going",
-      price: 785.0,
-      departement: { street: 'nx ville', code: 852 },
-      stats: {kk:{ nth: 1.55}, gg:{vth: 7445541213} },
-      adress: [{ street: 'nx ville', code: 852 }],
+      name: "joe doe",
+      infos:{age: 26, birthday:'dateSun, Nov 15, 2020, 03:13 PM',adress: { street: 'nx ville', code: 852 }},
+      nvc: 785.0,
       cars: ['bmw', 'fiat', { k: 'fffffff', v: 'ssssssssss' }] ,
-      is:true,
-      date:'dateSun, Nov 15, 2020, 03:13 PM'
+      is:true
     };
 
     // data = JSON.stringify(data)

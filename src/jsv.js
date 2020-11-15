@@ -1,17 +1,17 @@
 function jsv (data) {
   let rootElement = document.createElement('ul');
-  rootElement.classList.add('p-0','m-0')
+  rootElement.classList.add('p-0', 'm-0')
 
   if (Array.isArray(data)) {
     data.forEach(obj => {
       render(rootElement, obj, null, true);
     });
 
-    rootElement.innerHTML = `<li class="jsv-fold">- [</li> ${rootElement.innerHTML} <li class="jsv-fold-end">]</li>`;
+    rootElement.innerHTML = `<li class="jsv-fold">${svgFold()} [</li> ${rootElement.innerHTML} <li class="jsv-fold-end">]</li>`;
   }
   else {
     render(rootElement, data, null, false);
-    rootElement.innerHTML = `<li class="jsv-fold">- {</li> ${rootElement.childNodes[0].innerHTML} <li class="jsv-fold-end">}</li>`;
+    rootElement.innerHTML = `<li class="jsv-fold">${svgFold()} {</li> ${rootElement.childNodes[0].innerHTML} <li class="jsv-fold-end">}</li>`;
   }
 
   let isChildrenHided = false;
@@ -21,10 +21,6 @@ function jsv (data) {
     let parentTarget = target.parentNode;
 
     if (parentTarget.nodeName === 'UL' && target.classList.contains('jsv-fold')) {
-
-      target.textContent = isChildrenHided
-        ? target.textContent.replace('+', '-')
-        : target.textContent.replace('-', '+');
 
       [...parentTarget.children].forEach(c => {
         if (!c.classList.contains('jsv-fold') && !c.classList.contains('jsv-fold-end')) {
@@ -48,15 +44,7 @@ function render (rootElement, obj, parentKey, isObjInsideArr) {
     li.classList.add('ml-40')
 
     if (!isObj(value) && !Array.isArray(value)) {
-      let typeValue = typeof value;
-      console.log(typeValue);
-      if(typeValue==='number') {
-        typeValue=Number(value) === value && value % 1 !== 0 ? 'float' :'number'
-      }
-      li.innerHTML =typeValue==='string'
-      ? `"${key}": <span class="txt-${typeValue}">"${value}"</span>,`
-      :`"${key}": <span class="txt-${typeValue}">${value}</span>,`;
-      ul.appendChild(li)
+      createListItems(ul, value, key)
     }
 
     if (Array.isArray(value)) {
@@ -69,11 +57,11 @@ function render (rootElement, obj, parentKey, isObjInsideArr) {
   }
 
   if (!parentKey && isObjInsideArr) {
-    ul.innerHTML = `<li class="jsv-fold">- {</li> ${ul.innerHTML} }`;
+    ul.innerHTML = `<li class="jsv-fold">${svgFold()} {</li> ${ul.innerHTML} }`;
   }
 
   if (parentKey && !isObjInsideArr) {
-    ul.innerHTML = `<li class="jsv-fold">- ${parentKey} {</li> ${ul.innerHTML} }`;
+    ul.innerHTML = `<li class="jsv-fold">${svgFold()} "${parentKey}" {</li> ${ul.innerHTML} }`;
   }
 
   rootElement.appendChild(ul)
@@ -83,14 +71,14 @@ function createArr (rootElement, arr, key) {
   const ul = document.createElement('ul');
 
   arr.forEach(value => {
-    createItems(ul, value);
+    createListItems(ul, value, null);
   });
 
-  ul.innerHTML = `<li class="jsv-fold">- "${key}" [</li> ${ul.innerHTML} ]`;
+  ul.innerHTML = `<li class="jsv-fold">${svgFold()} "${key}" [</li> ${ul.innerHTML} ]`;
   rootElement.appendChild(ul)
 }
 
-function createItems (parentElement, value) {
+function createListItems (parentElement, value, key) {
   const li = document.createElement('li');
   li.classList.add('ml-40')
   if (Array.isArray(value)) {
@@ -100,11 +88,35 @@ function createItems (parentElement, value) {
     render(parentElement, value, null, true);
   }
   if (!isObj(value) && !Array.isArray(value)) {
-    li.innerHTML = `${value}`;
+    let typeValue = typeof value;
+ 
+    if (typeValue === 'number') {
+      typeValue = isFloatOrNumber(value) ? 'float' : 'number'
+    }
+
+    if (key) {
+      li.innerHTML = typeValue === 'string'
+        ? `"${key}": <span class="txt-${typeValue}">"${value}"</span>,`
+        : `"${key}": <span class="txt-${typeValue}">${value}</span>,`;
+    }
+    else {
+      li.innerHTML = typeValue === 'string'
+        ? `<span class="txt-${typeValue}">"${value}"</span>,`
+        : `<span class="txt-${typeValue}">${value}</span>,`;
+    }
+
     parentElement.appendChild(li)
   }
 }
 
 function isObj (o) {
   return o != null && o.constructor.name === "Object"
+}
+
+function isFloatOrNumber (value) {
+  return Number(value) === value && value % 1 !== 0
+}
+
+function svgFold () {
+  return `<svg viewBox="0 0 15 15" fill="currentColor"><path d="M0 5l6 6 6-6z"></path></svg>`;
 }

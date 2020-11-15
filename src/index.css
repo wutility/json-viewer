@@ -1,6 +1,16 @@
 body {
+  background-color: #1d1d1d;
+  color:#fff;
   font-family: Consolas, Georgia, Times, 'Times New Roman', serif;
   margin:0; padding: 20px;}
+
+  #root {
+    background-color: #fff;
+    color: #000000;
+    border: 3px solid #000000;
+    padding:15px;
+    border-radius: 7px;
+  }
 
 .jsv {
 
@@ -10,6 +20,8 @@ body {
   min-height: 100vh;
 }
 
+svg {vertical-align: top; color: rgb(104, 104, 104); height: 1em; width: 1em; padding-left: 2px;}
+
 .ml-40 {margin-left: 30px;}
 
 .txt-string {color: #690;}
@@ -17,7 +29,7 @@ body {
 .txt-float {color: rgb(133, 41, 255);}
 .txt-boolean {color: rgb(255, 41, 41);}
 
-ul {list-style: none; }
+ul {list-style: none; padding: 0 0 0 40px;  }
 .border-left {border-left: 1px dotted #ff3d3d;}
 
 .p-0 {padding:0}
