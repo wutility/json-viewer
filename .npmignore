@@ -26,6 +26,7 @@ dist/
 lib/
 helpers/
 util/
+public/
 
 CHANGELOG.md
 .cache
