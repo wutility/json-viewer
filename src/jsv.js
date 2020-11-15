@@ -1,5 +1,6 @@
 function jsv (data) {
   let rootElement = document.createElement('ul');
+  rootElement.classList.add('p-0','m-0')
 
   if (Array.isArray(data)) {
     data.forEach(obj => {
@@ -41,14 +42,20 @@ function jsv (data) {
 function render (rootElement, obj, parentKey, isObjInsideArr) {
 
   const ul = document.createElement('ul');
-  ul.classList.add('border-left');
 
   for (let [key, value] of Object.entries(obj)) {
     const li = document.createElement('li');
     li.classList.add('ml-40')
 
     if (!isObj(value) && !Array.isArray(value)) {
-      li.innerHTML = `"${key}": ${value},`;
+      let typeValue = typeof value;
+      console.log(typeValue);
+      if(typeValue==='number') {
+        typeValue=Number(value) === value && value % 1 !== 0 ? 'float' :'number'
+      }
+      li.innerHTML =typeValue==='string'
+      ? `"${key}": <span class="txt-${typeValue}">"${value}"</span>,`
+      :`"${key}": <span class="txt-${typeValue}">${value}</span>,`;
       ul.appendChild(li)
     }
 
@@ -74,7 +81,6 @@ function render (rootElement, obj, parentKey, isObjInsideArr) {
 
 function createArr (rootElement, arr, key) {
   const ul = document.createElement('ul');
-  ul.classList.add('border-left')
 
   arr.forEach(value => {
     createItems(ul, value);

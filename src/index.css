@@ -1,21 +1,24 @@
 body {
   font-family: Consolas, Georgia, Times, 'Times New Roman', serif;
-  margin:0; background-color: #232323; color:#fff !important; padding: 20px;}
+  margin:0; padding: 20px;}
 
 .jsv {
-  background-color: #232323;
-  color: #fff;
+
   font-size: 13px;
   font-family: consolas;
   min-width: 100vw;
   min-height: 100vh;
 }
 
-.ml-40 {margin-left: 40px;}
-.ml-60 {margin-left: 60px;}
-.ml-80 {margin-left: 80px;}
-.ml-100 {margin-left: 100px;}
-.ml-120 {margin-left: 120px;}
+.ml-40 {margin-left: 30px;}
+
+.txt-string {color: #690;}
+.txt-number {color: #905;}
+.txt-float {color: rgb(133, 41, 255);}
+.txt-boolean {color: rgb(255, 41, 41);}
 
 ul {list-style: none; }
 .border-left {border-left: 1px dotted #ff3d3d;}
+
+.p-0 {padding:0}
+.m-0 {margin:0}
