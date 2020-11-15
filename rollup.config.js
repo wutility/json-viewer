@@ -25,6 +25,6 @@ export default {
       sourceMap: false,
       babelHelpers: 'runtime'
     }),
-    // terser()
+     terser()
   ]
 };

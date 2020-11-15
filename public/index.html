@@ -23,7 +23,7 @@
         date:'03-02-2016',
         adress: [{ street: 'mt ville', code: 123 }],
         cars: ['bmw', 'fiat', { k: 'aeae', v: 'ereeeeeeeee' }],
-        departement: { street: 'nx ville', code: 852 }        
+        departement: { street: 'nx ville', code: 852.56 }        
       },
       {
         name: "joe",
@@ -37,16 +37,17 @@
 
     let data1 = {
       name: "joe doe",
-      infos:{age: 26, birthday:'dateSun, Nov 15, 2020, 03:13 PM',adress: { street: 'nx ville', code: 852 }},
-      nvc: 785.0,
-      cars: ['bmw', 'fiat', { k: 'fffffff', v: 'ssssssssss' }] ,
-      is:true
+      nvc: 785.1,
+      is:true,
+      date:'03-02-2018',
+      infos:{age: 26, birthday:'dateSun, Nov 15, 2020, 03:13 PM',adress: { street: 'nx ville', code: 852 }},      
+      cars: ['bmw', 'fiat', { k: 'fffffff', v: 'ssssssssss' }]     
     };
 
     // data = JSON.stringify(data)
     // data = JSON.parse(data)
 
-    document.getElementById('root').appendChild(jsv(data1))
+    document.getElementById('root').appendChild(jsonView(data))
   </script>
 </body>
 

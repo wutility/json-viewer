@@ -1,4 +1,4 @@
-import JsonView from './jsv';
+import {jsonView} from './jsv';
 import './index.css';
 
-export default JsonView;
+export default jsonView;

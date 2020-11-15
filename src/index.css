@@ -22,15 +22,30 @@ body {
 
 svg {vertical-align: top; color: rgb(104, 104, 104); height: 1em; width: 1em; padding-left: 2px;}
 
-.ml-40 {margin-left: 30px;}
+.pl-30 {padding-left: 30px;}
 
 .txt-string {color: #690;}
 .txt-number {color: #905;}
 .txt-float {color: rgb(133, 41, 255);}
 .txt-boolean {color: rgb(255, 41, 41);}
 
-ul {list-style: none; padding: 0 0 0 40px;  }
-.border-left {border-left: 1px dotted #ff3d3d;}
+
+
+
+ul {
+  list-style: none;
+  padding: 0 0 0 30px;
+  margin-left: 8px;
+  border-left: 1px dotted rgb(78, 125, 255);  }
+
+.jsv-top-parent {border:0}
+
+
+.jsv-fold {cursor: pointer;  }
+.jsv-fold-end {margin-left: 4px;}
+
 
 .p-0 {padding:0}
 .m-0 {margin:0}
+
+.border-left {border-left: 1px dotted  rgb(78, 125, 255);}

@@ -1,17 +1,17 @@
-function jsv (data) {
+function jsonView (data) {
   let rootElement = document.createElement('ul');
-  rootElement.classList.add('p-0', 'm-0')
+  rootElement.classList.add('jsv-top-parent', 'p-0', 'm-0')
 
   if (Array.isArray(data)) {
     data.forEach(obj => {
       render(rootElement, obj, null, true);
     });
 
-    rootElement.innerHTML = `<li class="jsv-fold">${svgFold()} [</li> ${rootElement.innerHTML} <li class="jsv-fold-end">]</li>`;
+    rootElement.prepend(createLiFold('[', null));
+    rootElement.appendChild(createLiFold(null, ']'));
   }
   else {
     render(rootElement, data, null, false);
-    rootElement.innerHTML = `<li class="jsv-fold">${svgFold()} {</li> ${rootElement.childNodes[0].innerHTML} <li class="jsv-fold-end">}</li>`;
   }
 
   let isChildrenHided = false;
@@ -20,7 +20,7 @@ function jsv (data) {
     let target = e.target;
     let parentTarget = target.parentNode;
 
-    if (parentTarget.nodeName === 'UL' && target.classList.contains('jsv-fold')) {
+    if (parentTarget.classList.contains('jsv-top-parent') || (parentTarget.nodeName === 'LI' && target.classList.contains('jsv-fold'))) {
 
       [...parentTarget.children].forEach(c => {
         if (!c.classList.contains('jsv-fold') && !c.classList.contains('jsv-fold-end')) {
@@ -40,9 +40,6 @@ function render (rootElement, obj, parentKey, isObjInsideArr) {
   const ul = document.createElement('ul');
 
   for (let [key, value] of Object.entries(obj)) {
-    const li = document.createElement('li');
-    li.classList.add('ml-40')
-
     if (!isObj(value) && !Array.isArray(value)) {
       createListItems(ul, value, key)
     }
@@ -56,15 +53,18 @@ function render (rootElement, obj, parentKey, isObjInsideArr) {
     }
   }
 
-  if (!parentKey && isObjInsideArr) {
-    ul.innerHTML = `<li class="jsv-fold">${svgFold()} {</li> ${ul.innerHTML} }`;
+  const li = document.createElement('li');
+
+  if (parentKey) {
+    li.appendChild(createLiFold('{', null, parentKey));
+  }
+  else {
+    li.appendChild(createLiFold('{', null, null));
   }
 
-  if (parentKey && !isObjInsideArr) {
-    ul.innerHTML = `<li class="jsv-fold">${svgFold()} "${parentKey}" {</li> ${ul.innerHTML} }`;
-  }
-
-  rootElement.appendChild(ul)
+  li.appendChild(ul);
+  li.appendChild(createLiFold(null, '}', null));
+  rootElement.appendChild(li)
 }
 
 function createArr (rootElement, arr, key) {
@@ -74,13 +74,15 @@ function createArr (rootElement, arr, key) {
     createListItems(ul, value, null);
   });
 
-  ul.innerHTML = `<li class="jsv-fold">${svgFold()} "${key}" [</li> ${ul.innerHTML} ]`;
-  rootElement.appendChild(ul)
+  const li = document.createElement('li');
+  li.appendChild(createLiFold('[', null, key));
+  li.appendChild(ul);
+  li.appendChild(createLiFold(null, ']', key));
+  rootElement.appendChild(li)
 }
 
 function createListItems (parentElement, value, key) {
   const li = document.createElement('li');
-  li.classList.add('ml-40')
   if (Array.isArray(value)) {
     createArr(parentElement, value, null);
   }
@@ -89,7 +91,7 @@ function createListItems (parentElement, value, key) {
   }
   if (!isObj(value) && !Array.isArray(value)) {
     let typeValue = typeof value;
- 
+
     if (typeValue === 'number') {
       typeValue = isFloatOrNumber(value) ? 'float' : 'number'
     }
@@ -117,6 +119,18 @@ function isFloatOrNumber (value) {
   return Number(value) === value && value % 1 !== 0
 }
 
-function svgFold () {
-  return `<svg viewBox="0 0 15 15" fill="currentColor"><path d="M0 5l6 6 6-6z"></path></svg>`;
+function createLiFold (startDelimiter, endDelimiter, key) {
+  const li = document.createElement('li');
+
+  if (startDelimiter) {
+    li.classList.add('jsv-fold');
+    li.innerHTML = `<svg viewBox="0 0 15 15" fill="currentColor"><path d="M0 5l6 6 6-6z"></path></svg>`;
+    li.innerHTML += key ? `"${key}": ${startDelimiter}` : ` ${startDelimiter}`;
+  }
+  else {
+    li.classList.add('jsv-fold-end');
+    li.innerHTML = endDelimiter;
+  }
+
+  return li;
 }
