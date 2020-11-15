@@ -1,4 +1,4 @@
-export default function jsonView (data) {
+export default function jsnview (data) {
   let rootElement = document.createElement('ul');
   rootElement.classList.add('jsv', 'p-0', 'm-0');
 

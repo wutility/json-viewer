@@ -10,7 +10,7 @@ export default {
       sourcemap: true,
     },
     {
-      name: 'jsvView',
+      name: 'jsnview',
       file: 'build/index.js',
       format: 'umd',
       sourcemap: false
