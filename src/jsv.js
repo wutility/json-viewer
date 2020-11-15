@@ -1,41 +1,44 @@
 function jsonView (data) {
+  console.time()
   let rootElement = document.createElement('ul');
   rootElement.classList.add('jsv-top-parent', 'p-0', 'm-0')
 
   if (Array.isArray(data)) {
     data.forEach(obj => {
-      render(rootElement, obj, null, true);
+      render(rootElement, obj, null);
     });
 
-    rootElement.prepend(createLiFold('[', null));
-    rootElement.appendChild(createLiFold(null, ']'));
+    rootElement.prepend(createSpanFold('[', null, null, rootElement.children.length));
+    rootElement.appendChild(createSpanFold(null, ']', null));
   }
   else {
-    render(rootElement, data, null, false);
+    render(rootElement, data, null);
   }
 
-  let isChildrenHided = false;
+  let isChildrenCollapsed = false;
   rootElement.addEventListener('click', (e) => {
 
-    let target = e.target;
-    let parentTarget = target.parentNode;
+    let target = e.target, parentTarget = target.parentNode;
 
-    if (parentTarget.classList.contains('jsv-top-parent') || (parentTarget.nodeName === 'LI' && target.classList.contains('jsv-fold'))) {
+    if (parentTarget.classList.contains('jsv-top-parent')
+      || (parentTarget.nodeName === 'LI' && target.classList.contains('jsv-fold'))) {
 
       [...parentTarget.children].forEach(c => {
         if (!c.classList.contains('jsv-fold') && !c.classList.contains('jsv-fold-end')) {
-          c.style.display = isChildrenHided ? 'block' : 'none'
+          c.style.display = isChildrenCollapsed ? 'block' : 'none';
         }
       });
 
-      isChildrenHided = !isChildrenHided;
+      target.classList.toggle('open-close');
+      parentTarget.style.display = isChildrenCollapsed ? 'block' : 'flex';
+      isChildrenCollapsed = !isChildrenCollapsed;
     }
   }, false);
 
   return rootElement
 }
 
-function render (rootElement, obj, parentKey, isObjInsideArr) {
+function render (rootElement, obj, parentKey) {
 
   const ul = document.createElement('ul');
 
@@ -49,22 +52,15 @@ function render (rootElement, obj, parentKey, isObjInsideArr) {
     }
 
     if (isObj(value)) {
-      render(ul, value, key, false);
+      render(ul, value, key);
     }
   }
 
   const li = document.createElement('li');
-
-  if (parentKey) {
-    li.appendChild(createLiFold('{', null, parentKey));
-  }
-  else {
-    li.appendChild(createLiFold('{', null, null));
-  }
-
+  li.appendChild(createSpanFold('{', null, parentKey, ul.children.length));
   li.appendChild(ul);
-  li.appendChild(createLiFold(null, '}', null));
-  rootElement.appendChild(li)
+  li.appendChild(createSpanFold(null, '}', null));
+  rootElement.appendChild(li);
 }
 
 function createArr (rootElement, arr, key) {
@@ -75,9 +71,9 @@ function createArr (rootElement, arr, key) {
   });
 
   const li = document.createElement('li');
-  li.appendChild(createLiFold('[', null, key));
+  li.appendChild(createSpanFold('[', null, key, ul.children.length));
   li.appendChild(ul);
-  li.appendChild(createLiFold(null, ']', key));
+  li.appendChild(createSpanFold(null, ']', key));
   rootElement.appendChild(li)
 }
 
@@ -87,7 +83,7 @@ function createListItems (parentElement, value, key) {
     createArr(parentElement, value, null);
   }
   if (isObj(value)) {
-    render(parentElement, value, null, true);
+    render(parentElement, value, null);
   }
   if (!isObj(value) && !Array.isArray(value)) {
     let typeValue = typeof value;
@@ -119,18 +115,19 @@ function isFloatOrNumber (value) {
   return Number(value) === value && value % 1 !== 0
 }
 
-function createLiFold (startDelimiter, endDelimiter, key) {
-  const li = document.createElement('li');
+function createSpanFold (startDelimiter, endDelimiter, key, itemsLen = 0) {
+  const span = document.createElement('span');
 
   if (startDelimiter) {
-    li.classList.add('jsv-fold');
-    li.innerHTML = `<svg viewBox="0 0 15 15" fill="currentColor"><path d="M0 5l6 6 6-6z"></path></svg>`;
-    li.innerHTML += key ? `"${key}": ${startDelimiter}` : ` ${startDelimiter}`;
+    span.classList.add('jsv-fold');
+    span.innerHTML = key
+      ? `"${key}": ${startDelimiter} <span class="txt-mute mr-5">${itemsLen} items</span>`
+      : ` ${startDelimiter} <span class="txt-mute mr-5">${itemsLen} items</span>`;
   }
   else {
-    li.classList.add('jsv-fold-end');
-    li.innerHTML = endDelimiter;
+    span.classList.add('jsv-fold-end');
+    span.innerHTML = endDelimiter;
   }
 
-  return li;
+  return span;
 }

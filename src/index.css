@@ -27,25 +27,36 @@ svg {vertical-align: top; color: rgb(104, 104, 104); height: 1em; width: 1em; pa
 .txt-string {color: #690;}
 .txt-number {color: #905;}
 .txt-float {color: rgb(133, 41, 255);}
-.txt-boolean {color: rgb(255, 41, 41);}
-
+.txt-boolean,.txt-object {color: rgb(255, 41, 41);}
+.txt-mute {color: #888888; }
 
 
 
 ul {
   list-style: none;
   padding: 0 0 0 30px;
-  margin-left: 8px;
+  margin-left: 5px;
   border-left: 1px dotted rgb(78, 125, 255);  }
 
 .jsv-top-parent {border:0}
 
-
 .jsv-fold {cursor: pointer;  }
-.jsv-fold-end {margin-left: 4px;}
 
+.jsv-fold:before {
+  color: #aaa;
+  content: "\25BC";
+  /* position: absolute; */
+  display: inline-block;
+   width: 1em;
+  /*left: 0px; */
+}
+
+.jsv-fold.open-close:before {
+  content: "\25B6";
+}
 
 .p-0 {padding:0}
 .m-0 {margin:0}
+.mr-5 {margin-right: 5px;}
 
 .border-left {border-left: 1px dotted  rgb(78, 125, 255);}
