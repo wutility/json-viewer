@@ -1,7 +1,7 @@
 # Jsnview: Ultra Fast and lightweight Json Viewer ~3KB (0 dependencies)
 
-[Demo](https://json-v.netlify.app/public/)
-[Demo JSBin UMD](https://jsbin.com/bovizupahi/1/edit)
+[Demo](https://json-v.netlify.app/public/)  
+[Demo JSBin UMD](https://jsbin.com/bovizupahi/1/edit)  
 [Demo codesandbox ESM](https://codesandbox.io/s/serverless-sound-igd1h)
 
 ```js
