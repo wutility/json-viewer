@@ -1,39 +1,32 @@
 function jsv (data) {
-  let rootElement = document.createElement('div');
+  let rootElement = document.createElement('ul');
+
   if (Array.isArray(data)) {
-    let ul = document.createElement('ul');
-
     data.forEach(obj => {
-      let li = document.createElement("li");
-      let span = document.createElement('span');
-      span.textContent = '- {';
-      span.classList.add('jsv-fold-arr');
-      li.classList.add('ml-40')
-      li.appendChild(span);
-      render(li, obj, null, true);
-
-      li.innerHTML += `<span class="jsv-fold-arr">}</span>`;
-      ul.appendChild(li)
+      render(rootElement, obj, null, true);
     });
 
-    ul.innerHTML = `<li class="jsv-fold-parent-arr border-left">- [</li> ${ul.innerHTML} ]`;
-    rootElement.appendChild(ul);
+    rootElement.innerHTML = `<li class="jsv-fold">- [</li> ${rootElement.innerHTML} <li class="jsv-fold-end">]</li>`;
   }
   else {
-    render(rootElement, data, null);
+    render(rootElement, data, null, false);
+    rootElement.innerHTML = `<li class="jsv-fold">- {</li> ${rootElement.childNodes[0].innerHTML} <li class="jsv-fold-end">}</li>`;
   }
 
   let isChildrenHided = false;
   rootElement.addEventListener('click', (e) => {
 
-    if (e.target.classList.contains('jsv-fold-parent-arr') || e.target.classList.contains('jsv-fold-arr') || (e.target.nodeName === 'LI'
-      && e.target.parentNode.nodeName === 'UL'
-      && e.target.classList.contains('jsv-fold'))) {
+    let target = e.target;
+    let parentTarget = target.parentNode;
 
-      e.target.textContent = isChildrenHided ? e.target.textContent.replace('+', '-') : e.target.textContent.replace('-', '+');
+    if (parentTarget.nodeName === 'UL' && target.classList.contains('jsv-fold')) {
 
-      [...e.target.parentNode.children].forEach(c => {
-        if (!c.classList.contains('jsv-fold-arr') && !c.classList.contains('jsv-fold-parent-arr') && !c.classList.contains('jsv-fold')) {
+      target.textContent = isChildrenHided
+        ? target.textContent.replace('+', '-')
+        : target.textContent.replace('-', '+');
+
+      [...parentTarget.children].forEach(c => {
+        if (!c.classList.contains('jsv-fold') && !c.classList.contains('jsv-fold-end')) {
           c.style.display = isChildrenHided ? 'block' : 'none'
         }
       });
@@ -44,8 +37,8 @@ function jsv (data) {
 
   return rootElement
 }
-var index = 0;
-function render (rootElement, obj, parentKey, isObjInsideArr = false) {
+
+function render (rootElement, obj, parentKey, isObjInsideArr) {
 
   const ul = document.createElement('ul');
   ul.classList.add('border-left');
@@ -67,8 +60,7 @@ function render (rootElement, obj, parentKey, isObjInsideArr = false) {
       render(ul, value, key, false);
     }
   }
-  index++
-  console.log(ul);
+
   if (!parentKey && isObjInsideArr) {
     ul.innerHTML = `<li class="jsv-fold">- {</li> ${ul.innerHTML} }`;
   }
