@@ -30,8 +30,6 @@
     .jsv {
       font-size: 13px;
       font-family: consolas;
-      min-width: 100vw;
-      min-height: 100vh;
     }
 
     a {
@@ -50,7 +48,7 @@
     button {
       padding: 10px 15px;
     }
-
+button {cursor: pointer;}
     .d-flex {display: flex; justify-content: space-between; align-items: center;}
   </style>
 </head>
@@ -63,9 +61,8 @@
     <a href="https://github.com/haikelfazzani/json-view">Github Link</a>
   </header>  
 
-  <input type="url" id="json-url" class="w-100 mb-10" placeholder="Load json from url.." />
+  <input type="url" id="json-url" class="w-100 mb-10" value="https://jsonplaceholder.typicode.com/users" placeholder="Load json from url.." />
   <button id="btn-load" class="w-100 mb-10">Load Json</button>
-  <small class="txt-mute mb-10">URL for testing: https://jsonplaceholder.typicode.com/users</small>
 
   <div id="root"></div>  
 
@@ -75,8 +72,11 @@
       fetch(url)
         .then(response => response.json())
         .then(json => {
-          document.getElementById('root').appendChild(jsvView(json))
-        });
+          let root = document.getElementById('root');
+          root.innerHTML = '';
+          root.appendChild(jsvView(json));
+        })
+        .catch(e=>{});
     });
   </script>
 </body>

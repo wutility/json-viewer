@@ -3,9 +3,29 @@
 }
 
 .jsv {
-  font-size: 13px;
   font-family: consolas;
+  border: 0;
+  box-sizing: border-box;
 }
+
+.jsv-fold {
+  cursor: pointer;
+}
+
+.jsv-fold:before {
+  color: #000000;
+  content: "\2BC6";
+  /* position: absolute; */
+  display: inline-block;
+  width: 1em;
+  /*left: 0px; */
+}
+
+.jsv-fold-close:before {
+  content: "\2BC8";
+}
+
+.jsv-fold-end {margin-left: 2px;}
 
 svg {
   vertical-align: top;
@@ -13,10 +33,6 @@ svg {
   height: 1em;
   width: 1em;
   padding-left: 2px;
-}
-
-.pl-30 {
-  padding-left: 30px;
 }
 
 .txt-string {
@@ -37,7 +53,6 @@ svg {
   color: #888888;
 }
 
-
 ul {
   list-style: none;
   padding: 0 0 0 30px;
@@ -45,33 +60,12 @@ ul {
   border-left: 1px dotted rgb(78, 125, 255);
 }
 
-.jsv-top-parent {
-  border: 0
-}
-
-.jsv-fold {
-  cursor: pointer;
-}
-
-.jsv-fold:before {
-  color: #000000;
-  content: "\2BC6";
-  /* position: absolute; */
-  display: inline-block;
-  width: 1em;
-  /*left: 0px; */
-}
-
-.open-close:before {
-  content: "\2BC8";
-}
-
 .p-0 {
-  padding: 0
+  padding: 0;
 }
 
 .m-0 {
-  margin: 0
+  margin: 0;
 }
 
 .mr-10 {

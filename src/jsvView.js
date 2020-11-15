@@ -1,6 +1,6 @@
 export default function jsonView (data) {
   let rootElement = document.createElement('ul');
-  rootElement.classList.add('jsv-top-parent', 'p-0', 'm-0');
+  rootElement.classList.add('jsv', 'p-0', 'm-0');
 
   if (Array.isArray(data)) {
     const ul = document.createElement('ul');
@@ -22,7 +22,7 @@ export default function jsonView (data) {
 
     if (parentTarget.nodeName === 'LI' && target.classList.contains('jsv-fold')) {
 
-      let isClosed = target.classList.contains('open-close');
+      let isClosed = target.classList.contains('jsv-fold-close');
 
       [...parentTarget.children].forEach(c => {
         if (!c.classList.contains('jsv-fold') && !c.classList.contains('jsv-fold-end')) {
@@ -30,7 +30,7 @@ export default function jsonView (data) {
         }
       });
 
-      target.classList.toggle('open-close');
+      target.classList.toggle('jsv-fold-close');
       parentTarget.style.display = isClosed ? 'block' : 'flex';
     }
   }, false);
