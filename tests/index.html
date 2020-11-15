@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="../src/index.css">
+</head>
+
+<body>
+  <script src="../src/jsv.js"></script>
+
+  <div id="root"></div>
+
+  <script>
+    let data = [
+      {
+        name: "mike",
+        date:'03-02-2016',
+        adress: [{ street: 'mt ville', code: 123 }],
+        cars: ['bmw', 'fiat', { k: 'aeae', v: 'ereeeeeeeee' }],
+  
+        price: 125.369
+      },
+      {
+        name: "joe",
+        date:'03-02-2018',
+        adress: [{ street: 'nx ville', code: 852 }],
+        cars: ['bmw', 'fiat', { k: 'fffffff', v: 'ssssssssss' }],
+
+        price: 785.0
+      }
+    ];
+
+    let data1 = {
+      name: "joe biden",
+      username: "keep going",
+      price: 785.0,
+      departement: { street: 'nx ville', code: 852 },
+      adress: [{ street: 'nx ville', code: 852 }],
+      cars: ['bmw', 'fiat', { k: 'fffffff', v: 'ssssssssss' }]      
+    };
+
+    // data = JSON.stringify(data)
+    // data = JSON.parse(data)
+
+    document.getElementById('root').appendChild(jsv(data))
+  </script>
+</body>
+
+</html>

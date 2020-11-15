@@ -1,24 +1,30 @@
-import scss from 'rollup-plugin-scss';
-import cleanup from 'rollup-plugin-cleanup';
-import babel from 'rollup-plugin-babel';
-import minify from 'rollup-plugin-babel-minify';
+import postcss from "rollup-plugin-postcss";
+import { terser } from "rollup-plugin-terser";
 
 export default {
-  input: 'src/lib/index.js',
+  input: "src/index.js",
   output: [
     {
-      file: 'build/index.cjs.js',
-      format: 'cjs'
+      file: 'build/index.esm.js',
+      format: 'esm',
+      sourcemap: true,
     },
     {
-      file: 'build/index.esm.js',
-      format: 'esm'
+      name: 'jsvView',
+      file: 'build/index.js',
+      format: 'umd',
+      sourcemap: false
     }
   ],
   plugins: [
-    babel({ exclude: 'node_modules/**' }),
-    scss(),
-    cleanup(),
-    minify({ comments: false })
-  ],
+    postcss({
+      babelrc: false,
+      plugins: [],
+      extract: true,
+      minimize: true,
+      sourceMap: false,
+      babelHelpers: 'runtime'
+    }),
+    // terser()
+  ]
 };

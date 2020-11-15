@@ -1,67 +1,38 @@
 {
-  "name": "react-img-modal",
-  "version": "0.0.5",
-  "description": "A lightweight React component modal image.",
-  "main": "build/index.cjs.js",
+  "name": "jsv-view",
+  "version": "1.0.0",
+  "description": "lightweight json view",
+  "main": "build/index.js",
   "module": "build/index.esm.js",
-  "files": [
-    "build"
-  ],
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
-    "clean": "rimraf -rf build/*",
-    "build-npm": "npm run clean && rollup -c"
+    "watch": "rollup -c -w",
+    "build": "npm run clean && rollup -c",
+    "clean": "rimraf -rf index.js",
+    "test": "node tests/githubTrends.js"
   },
-  "dependencies": {
-    "react": "^16.12.0",
-    "react-dom": "^16.12.0",
-    "react-router-dom": "^5.1.2",
-    "react-scripts": "3.3.0"
-  },
-  "peerDependencies": {
-    "react": "16.x"
+  "devDependencies": {
+    "jest": "^24.9.0",
+    "rimraf": "^3.0.0"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/haikelfazzani/react-img-modal.git"
+    "url": "git+https://github.com/haikelfazzani/jsv-view.git.git"
   },
   "bugs": {
-    "url": "https://github.com/haikelfazzani/react-img-modal/issues"
+    "url": "https://github.com/haikelfazzani/jsv-view.git/issues"
   },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ],
+  "homepage": "https://github.com/haikelfazzani/jsv-view.git#readme",
   "keywords": [
-    "react",
-    "image",
-    "modal",
-    "hooks"
+    "json",
+    "view",
+    "format",
+    "lightweight"
   ],
-  "author": "Haikel Fazzani <haikel.fazzani@gmail.com>",
-  "contributors": [
-    {
-      "name": "Haikel Fazzani",
-      "email": "haikel.fazzani@gmail.com"
-    }
-  ],
-  "devDependencies": {
-    "@babel/cli": "^7.7.0",
-    "@babel/preset-react": "^7.7.0",
-    "react": "^16.11.0",
-    "react-dom": "^16.11.0",
-    "react-scripts": "^3.2.0",
-    "rimraf": "^3.0.0",
-    "rollup": "^1.26.3",
-    "rollup-plugin-babel": "^4.3.3",
-    "rollup-plugin-babel-minify": "^9.1.1",
-    "rollup-plugin-cleanup": "^3.1.1",
-    "rollup-plugin-css": "^1.0.10",
-    "rollup-plugin-scss": "^1.0.2"
+  "author": "Haikel Fazzani",
+  "license": "MIT",
+  "dependencies": {
+    "rollup": "^2.33.2",
+    "rollup-plugin-postcss": "^3.1.8",
+    "rollup-plugin-terser": "^7.0.2"
   }
 }

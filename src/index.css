@@ -1,28 +1,21 @@
-.images-container {
-  max-width: 1140px;
-  width: 1140px;
-  display: flex;
-  
+body {
+  font-family: Consolas, Georgia, Times, 'Times New Roman', serif;
+  margin:0; background-color: #232323; color:#fff !important; padding: 20px;}
+
+.jsv {
+  background-color: #232323;
+  color: #fff;
+  font-size: 13px;
+  font-family: consolas;
+  min-width: 100vw;
+  min-height: 100vh;
 }
 
-.col-3 {
-  width: 25%;
-}
+.ml-40 {margin-left: 40px;}
+.ml-60 {margin-left: 60px;}
+.ml-80 {margin-left: 80px;}
+.ml-100 {margin-left: 100px;}
+.ml-120 {margin-left: 120px;}
 
-.img-hover-zoom {  
-  width: 100%;
-  height: 250px; 
-  overflow: hidden;
-  cursor: pointer;
-}
-
-.img-hover-zoom img {
-  width: 100%;
-  height: 250px;
-  object-fit: cover;
-  transition: transform .5s ease;
-}
-
-.img-hover-zoom:hover img {
-  transform: scale(1.5);
-}
+ul {list-style: none; }
+.border-left {border-left: 1px dotted #ff3d3d;}

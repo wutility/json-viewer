@@ -1,11 +1,10 @@
 {
   "presets": [
     [
-      "@babel/preset-react",
-      {
-        "throwIfNamespace": false, // defaults to true
-        "useSpread":false
-      }
+      "@babel/env"
     ]
+  ],
+  "plugins": [
+    "@babel/plugin-transform-arrow-functions"
   ]
 }
