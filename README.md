@@ -27,10 +27,10 @@ import jsnview from 'jsnview';
 
 Or include it via jsDelivr CDN (UMD):
 ```html
-<script src="https://cdn.jsdelivr.net/npm/jsnview@1.0.4/build/index.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jsnview@1.0.5/build/index.min.js"></script>
 <!-- Access via global object : window.jsnview -->
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jsnview@1.0.4/build/index.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jsnview@1.0.5/build/index.css" />
 ```
 
 ### Methods

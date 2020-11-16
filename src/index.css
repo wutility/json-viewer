@@ -3,6 +3,8 @@
 }
 
 .jsv {
+  width: 100%;
+  height: 100%;
   font-family: consolas;
   border: 0;
   box-sizing: border-box;
@@ -12,17 +14,27 @@
   cursor: pointer;
 }
 
-.jsv-fold:before {
+.jsv-fold:before,.jsv-fold-close::after {
   color: #888888;
+  font-family: arial;
+  width: 1em;
+  cursor: pointer; 
+}
+
+.jsv-fold:before {  
   content: "\2BC6";
   /* position: absolute; */
   display: inline-block;
-  width: 1em;
   /*left: 0px; */
 }
 
 .jsv-fold-close:before {
-  content: "\2BC8";
+  content: "\2BC8";  
+}
+
+.jsv-fold-close::after {
+  content: "\2194";
+  margin-left: 2px;    
 }
 
 .jsv-fold-end {margin-left: 2px;}
