@@ -1,13 +1,13 @@
 {
   "name": "jsnview",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Fast and a lightweight json viewer (0 dependencies)",
   "main": "build/index.js",
   "module": "build/index.esm.js",
   "scripts": {
     "watch": "rollup -c -w",
     "build": "npm run clean && rollup -c",
-    "clean": "rimraf -rf index.js"
+    "clean": "rimraf -rf build/*"
   },
   "devDependencies": {
     "jest": "^24.9.0",

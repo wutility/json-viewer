@@ -5,79 +5,84 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="../build/index.css">
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      background-color: #1d1d1d;
-      color: #fff;
-      font-family: Consolas, Georgia, Times, 'Times New Roman', serif;
-      margin: 0;
-      padding: 20px;
-    }
-
-    #root {
-      background-color: #fff;
-      color: #000000;
-      border: 3px solid #000000;
-      padding: 15px;
-      border-radius: 7px;
-    }
-
-    .jsv {
-      font-size: 13px;
-      font-family: consolas;
-    }
-
-    a {
-      color: #fff
-    }
-
-    .w-100 {
-      width: 100%;
-    }
-
-    .mb-10 {
-      margin-bottom: 10px !important;
-    }
-
-    input,
-    button {
-      padding: 10px 15px;
-    }
-button {cursor: pointer;}
-    .d-flex {display: flex; justify-content: space-between; align-items: center;}
-  </style>
 </head>
 
 <body>
   <script src="../build/index.js"></script>
 
-  <header class="d-flex">
-    <h1>Ultra Fast and lightweight Json Viewer ~3KB</h1>
-    <a href="https://github.com/haikelfazzani/json-view">Github Link</a>
-  </header>  
+  <header>
+    <h1 class="flipInX"><a href="https://github.com/haikelfazzani/json-view">{JsnView}</a></h1>
+    <h3 class="mb-0">Ultra Fast and lightweight Json Viewer ~3KB</h3>
+  </header>
 
-  <input type="url" id="json-url" class="w-100 mb-10" value="https://jsonplaceholder.typicode.com/users" placeholder="Load json from url.." />
-  <button id="btn-load" class="w-100 mb-10">Load Json</button>
+  <div class="d-flex justify-center m-10">
+    <img src="https://badgen.net/bundlephobia/min/jsnview" alt="json viewer" />
+    <img src="https://badgen.net/bundlephobia/dependency-count/jsnview" alt="json viewer" />
+    <img src="https://badgen.net/npm/v/jsnview" alt="json viewer" />
+    <img src="https://badgen.net/npm/dt/jsnview" alt="json viewer" />
+  </div>
 
-  <div id="root"></div>  
+  <pre>$ npm i jsnview</pre>
+
+  <form id="form-test">
+    <div class="d-flex flex-grow mb-10">
+
+      <div class="d-flex-col mr-10">
+        <label>Enter Json URL</label>
+        <input type="url" name="jsonurl" class="w-100 mb-10" value="https://reqres.in/api/users?page=2"
+          placeholder="Load json from url.." />
+      </div>
+
+      <div class="d-flex-col mr-10">
+        <label for="displayItemsLen">displayItemsLen</label>
+        <select name="displayItemsLen">
+          <option value="1">true</option>
+          <option value="0">false</option>
+        </select>
+      </div>
+
+      <div class="d-flex-col mr-10">
+        <label for="displayTypes">displayTypes</label>
+        <select name="displayTypes">
+          <option value="1">true</option>
+          <option value="0">false</option>
+        </select>
+      </div>
+
+    </div>
+
+    <button type="submit" class="w-100 mb-10">Load Json</button>
+  </form>
+
+  <div id="root">result here</div>
 
   <script>
-    document.getElementById('btn-load').addEventListener('click', (e) => {
-      let url = document.getElementById('json-url').value || 'https://jsonplaceholder.typicode.com/users'
-      fetch(url)
+    const data = { name: 'mike', pass: '123', email: null, single: false, age: 26, shop: { price: 156.5 }, adress: ['nc york', 'phily'] };
+
+    let root = document.getElementById('root');
+
+    document.getElementById('form-test').addEventListener('submit', (e) => {
+      e.preventDefault()
+
+      let jsonurl = e.target.elements[0].value;
+      let displayItemsLen = +e.target.elements[1].value;
+      let displayTypes = +e.target.elements[2].value;
+
+      root.innerHTML = '';
+
+      //root.appendChild(jsnview(data, { displayItemsLen, displayTypes }));
+
+      fetch(jsonurl)
         .then(response => response.json())
         .then(json => {
-          let root = document.getElementById('root');
-          root.innerHTML = '';
-          root.appendChild(jsnview(json));
+          root.appendChild(jsnview(json, { displayItemsLen, displayTypes }));
         })
-        .catch(e=>{});
-    });
+        .catch(e => {
+          console.log(e);
+        });
+    })
   </script>
 </body>
 

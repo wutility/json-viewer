@@ -13,7 +13,7 @@
 }
 
 .jsv-fold:before {
-  color: #000000;
+  color: #888888;
   content: "\2BC6";
   /* position: absolute; */
   display: inline-block;
@@ -27,16 +27,20 @@
 
 .jsv-fold-end {margin-left: 2px;}
 
-svg {
-  vertical-align: top;
-  color: rgb(104, 104, 104);
-  height: 1em;
-  width: 1em;
-  padding-left: 2px;
+.jsv ul {
+  list-style: none;
+  padding: 0 0 0 30px;
+  margin-left: 5px;
+  border-left: 1px dotted rgb(78, 125, 255);
 }
+
+.jsv li {list-style: none;}
+
+.jsv-items-len {margin: 0 5px; color: #888888; }
 
 .txt-string {
   color: #690;
+  word-break: break-word;
 }
 
 .txt-number,
@@ -44,20 +48,14 @@ svg {
   color: #905;
 }
 
-.txt-boolean,
-.txt-object {
+.txt-null,.txt-undefined {
   color: rgb(255, 41, 41);
 }
 
-.txt-mute {
-  color: #888888;
-}
+.txt-boolean {color:#3629ff;}
 
-ul {
-  list-style: none;
-  padding: 0 0 0 30px;
-  margin-left: 5px;
-  border-left: 1px dotted rgb(78, 125, 255);
+.txt-span-vtype {
+  color: #888888;
 }
 
 .p-0 {
@@ -68,10 +66,6 @@ ul {
   margin: 0;
 }
 
-.mr-10 {
-  margin-right: 10px;
-}
-
-.border-left {
-  border-left: 1px dotted rgb(78, 125, 255);
+.jsv .border-left {
+  border-left: 1px dotted #888888 !important;
 }
