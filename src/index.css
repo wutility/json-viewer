@@ -31,7 +31,7 @@
   list-style: none;
   padding: 0 0 0 30px;
   margin-left: 5px;
-  border-left: 1px dotted rgb(78, 125, 255);
+  border-left: 1px dotted #888888;
 }
 
 .jsv li {list-style: none;}
@@ -64,8 +64,4 @@
 
 .m-0 {
   margin: 0;
-}
-
-.jsv .border-left {
-  border-left: 1px dotted #888888 !important;
 }

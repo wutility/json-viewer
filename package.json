@@ -1,7 +1,7 @@
 {
   "name": "jsnview",
-  "version": "1.0.2",
-  "description": "Ultra Fast and lightweight Json Viewer ~3KB 0 Dependencies",
+  "version": "1.0.4",
+  "description": "Ultra Fast and lightweight Json Viewer ~3KB with 0 Dependencies",
   "main": "build/index.js",
   "module": "build/index.esm.js",
   "scripts": {
@@ -18,15 +18,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/haikelfazzani/json-view.git.git"
+    "url": "https://github.com/haikelfazzani/json-view"
   },
   "bugs": {
-    "url": "https://github.com/haikelfazzani/json-view.git/issues"
+    "url": "https://github.com/haikelfazzani/json-view/issues"
   },
-  "homepage": "https://github.com/haikelfazzani/json-view.git#readme",
+  "homepage": "https://github.com/haikelfazzani/json-view#readme",
   "keywords": [
     "json",
     "view",
+    "json viewer",
     "format",
     "fast",
     "lightweight",

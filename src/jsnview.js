@@ -1,5 +1,5 @@
 function isObj (o) {
-  return o !== null && o.constructor.name === "Object"
+  return o && typeof o === 'object' && o.constructor.name === "Object"
 }
 
 function getValType (value) {
@@ -30,8 +30,7 @@ export default function jsnview (data, { displayItemsLen = true, displayTypes = 
     li.appendChild(ul);
     li.appendChild(createSpanFold(null, ']', null));
     rootElement.appendChild(li)
-  }
-  else {
+  } else {
     render(rootElement, data, null);
   }
 
@@ -58,9 +57,10 @@ export default function jsnview (data, { displayItemsLen = true, displayTypes = 
   function createArr (rootElement, arr, key) {
     const ul = document.createElement('ul');
 
-    arr.forEach(value => {
+    for (let i = 0; i < arr.length; i++) {
+      const value = arr[i];
       createListItems(ul, value, null);
-    });
+    }
 
     const li = document.createElement('li');
     li.appendChild(createSpanFold('[', null, key, ul.children.length));
@@ -80,6 +80,7 @@ export default function jsnview (data, { displayItemsLen = true, displayTypes = 
     if (!isObj(value) && !Array.isArray(value)) {
       let typeValue = getValType(value);
 
+      value = typeof value === 'boolean' ? value : (value || typeValue);
       let spanValue = createSpan(
         typeValue === 'string' ? `"${value}"` : value,
         `txt-${typeValue}`
@@ -123,23 +124,24 @@ export default function jsnview (data, { displayItemsLen = true, displayTypes = 
     rootElement.appendChild(li);
   }
 
-  rootElement.addEventListener('click', (e) => {
-
+  function onToggleFold (e) {
     let target = e.target, parentTarget = target.parentNode;
 
     if (parentTarget.nodeName === 'LI' && target.classList.contains('jsv-fold')) {
 
       let isClosed = target.classList.contains('jsv-fold-close');
 
-      for (let element of parentTarget.children) {
-        if (!element.classList.contains('jsv-fold') && !element.classList.contains('jsv-fold-end')) {
-          element.style.display = isClosed ? 'block' : 'none';
+      for (let nodeEl of parentTarget.children) {
+        if (!nodeEl.classList.contains('jsv-fold') && !nodeEl.classList.contains('jsv-fold-end')) {
+          nodeEl.style.display = isClosed ? 'block' : 'none';
         }
       }
 
       target.classList.toggle('jsv-fold-close');
     }
-  }, false);
+  }
+
+  rootElement.addEventListener('click', onToggleFold, false);
 
   return rootElement;
 }

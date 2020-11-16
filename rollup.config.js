@@ -8,6 +8,7 @@ export default {
       file: 'build/index.esm.js',
       format: 'esm',
       sourcemap: true,
+
     },
     {
       name: 'jsnview',
@@ -19,6 +20,7 @@ export default {
   plugins: [
     postcss({
       babelrc: false,
+      modules: false,
       plugins: [],
       extract: true,
       minimize: true,
