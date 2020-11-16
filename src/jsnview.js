@@ -20,7 +20,7 @@ export default function jsnview (data, { displayItemsLen = true, displayTypes = 
   rootElement.classList.add('jsv', 'p-0', 'm-0');
 
   if (Array.isArray(data)) {
-    const ul = document.createElement('ul');
+    let ul = document.createElement('ul');
     data.forEach(obj => {
       render(ul, obj, null);
     });
