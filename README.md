@@ -1,19 +1,22 @@
-<h1 align="center" style="width:100%">🔥 {JsnView} 🔥</h1>
-<h3 align="center" style="margin:0">Ultra Fast and lightweight</h3>
-<h3 align="center" style="margin-top:0">Json Viewer ~3KB with 0 dependencies</h3>
+<p align="center">
+<img src="https://i.ibb.co/0BYbk6V/jsnview.png" alt="json viewer"/>
+</p>
+
+<hr />
 
 <div align="center" style="width:100%; text-align:center;">
   <img src="https://badgen.net/bundlephobia/min/jsnview" alt="json viewer" />
   <img src="https://badgen.net/bundlephobia/dependency-count/jsnview" alt="json viewer" />
   <img src="https://badgen.net/npm/v/jsnview" alt="json viewer" />
   <img src="https://badgen.net/npm/dt/jsnview" alt="json viewer" />
+  <img src="https://data.jsdelivr.com/v1/package/npm/jsnview/badge" alt="json viewer"/>
 </div>
 
 ### Demos  
-[Demo Netlify](https://json-v.netlify.app/public/)  
+[PLayground Netlify](https://json-v.netlify.app/public/)  
 [Demo JSBin UMD](https://jsbin.com/pekoyef/edit)  
-[Demo Codesandbox ESM](https://codesandbox.io/s/serverless-sound-igd1h)
-
+[Demo Codesandbox ESM](https://codesandbox.io/s/serverless-sound-igd1h)  
+[Demo React Codesandbox](https://codesandbox.io/s/winter-firefly-xb5jj)
 ```html
 $ npm i jsnview
 // or
