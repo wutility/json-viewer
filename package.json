@@ -1,6 +1,6 @@
 {
   "name": "jsnview",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Ultra Fast and lightweight Json Viewer ~3KB with 0 Dependencies",
   "main": "build/index.js",
   "module": "build/index.esm.js",

@@ -26,24 +26,24 @@ $ yarn add jsnview
 ## Usage
 ```js
 import jsnview from 'jsnview';
+import 'jsnview/build/index.css';
 ```
 
 Or include it via jsDelivr CDN (UMD):
 ```html
-<script src="https://cdn.jsdelivr.net/npm/jsnview@1.0.5/build/index.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jsnview@1.0.6/build/index.css" />
+<script src="https://cdn.jsdelivr.net/npm/jsnview@1.0.6/build/index.min.js"></script>
 <!-- Access via global object : window.jsnview -->
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jsnview@1.0.5/build/index.css" />
 ```
 
-### Methods
-- **jsnview(data:Object, options: Object): [HTMLElement]**  
-*Valid dataTypes: json, pure object or array*
-*Default object options: { displayItemsLen:true , displayTypes:true }*
+### Methods && Examples
+- **jsnview(data: Object, options: Object): [HTMLElement]**  
+*Valid dataTypes: json, pure object or array*  
+*Default object options (optional): { displayItemsLen:true , displayTypes:true }*
 ```js
-let data = { name:'Mike', age: 22 }; 
+let data = { name: 'Mike', age: 22 }; 
 
-jsnview(data, { displayItemsLen:true , displayTypes:true });
+jsnview(data, { displayItemsLen: true , displayTypes: true });
 // returns HTMLElement
 ```
 
