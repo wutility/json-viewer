@@ -13,13 +13,12 @@
 </div>
 
 ### Demos  
-[PLayground Netlify](https://json-v.netlify.app/public/)  
-[Demo JSBin UMD](https://jsbin.com/pekoyef/edit)  
-[Demo Codesandbox ESM](https://codesandbox.io/s/serverless-sound-igd1h)  
-[Demo React Codesandbox](https://codesandbox.io/s/winter-firefly-xb5jj)
-```html
+[PLayground](https://json-v.netlify.app/public/)  
+[Demo Codepen](https://codepen.io/haikelfazzani-the-bold/pen/bGWKEMP)  
+
+```bash
 $ npm i jsnview
-// or
+# or
 $ yarn add jsnview
 ```
 
@@ -31,8 +30,8 @@ import 'jsnview/build/index.css';
 
 Or include it via jsDelivr CDN (UMD):
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jsnview@1.0.6/build/index.css" />
-<script src="https://cdn.jsdelivr.net/npm/jsnview@1.0.6/build/index.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jsnview/build/index.css" />
+<script src="https://cdn.jsdelivr.net/npm/jsnview/build/index.min.js"></script>
 <!-- Access via global object : window.jsnview -->
 ```
 
