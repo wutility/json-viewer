@@ -1,43 +1,8 @@
 * {
   box-sizing: border-box;
-}
-
-.jsv {
-  width: 100%;
-  height: 100%;
+  font-size: 14px;
   font-family: consolas;
-  border: 0;
-  box-sizing: border-box;
 }
-
-.jsv-fold {
-  cursor: pointer;
-}
-
-.jsv-fold:before,.jsv-fold-close::after {
-  color: #888888;
-  font-family: arial;
-  width: 1em;
-  cursor: pointer; 
-}
-
-.jsv-fold:before {  
-  content: "\2BC6";
-  /* position: absolute; */
-  display: inline-block;
-  /*left: 0px; */
-}
-
-.jsv-fold-close:before {
-  content: "\2BC8";  
-}
-
-.jsv-fold-close::after {
-  content: "\2194";
-  margin-left: 2px;    
-}
-
-.jsv-fold-end {margin-left: 2px;}
 
 .jsv ul {
   list-style: none;
@@ -46,34 +11,47 @@
   border-left: 1px dotted #888888;
 }
 
-.jsv li {list-style: none;}
-
-.jsv-items-len {margin: 0 5px; color: #888888; }
-
-.txt-string {
-  color: #690;
-  word-break: break-word;
+.jsv li {
+  list-style: none;
 }
 
-.txt-number,
-.txt-float {
-  color: #905;
-}
-
-.txt-null,.txt-undefined {
-  color: rgb(255, 41, 41);
-}
-
-.txt-boolean {color:#3629ff;}
-
-.txt-span-vtype {
-  color: #888888;
-}
-
-.p-0 {
-  padding: 0;
-}
-
-.m-0 {
+.jsv {
   margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.fold {
+  cursor: pointer;
+}
+
+.open:before,
+.close::after {
+  font-family: arial;
+  width: 1em;
+  cursor: pointer;
+}
+
+.open:before {
+  content: "\2BC6";
+  display: inline-block;
+}
+
+.close:before {
+  content: "\2BC8";
+}
+
+.close::after {
+  content: "\2194";
+  margin-left: 2px;
+}
+
+.len,.type {margin-left: 5px;}
+
+.type,
+.len,
+.open:before,
+.close::after,
+.close:before {
+  color: #888888;
 }

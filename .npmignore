@@ -27,6 +27,7 @@ lib/
 helpers/
 util/
 public/
+testr/
 
 CHANGELOG.md
 .cache

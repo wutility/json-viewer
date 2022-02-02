@@ -1,18 +1,17 @@
 {
   "name": "jsnview",
-  "version": "1.0.6",
+  "version": "2.0.0",
   "description": "Ultra Fast and lightweight Json Viewer ~3KB with 0 Dependencies",
   "main": "build/index.js",
   "module": "build/index.esm.js",
   "scripts": {
     "watch": "rollup -c -w",
-    "build": "npm run clean && rollup -c",
+    "build": "rollup -c",
     "clean": "rimraf -rf build/*"
   },
   "devDependencies": {
-    "jest": "^24.9.0",
-    "rimraf": "^3.0.0",
-    "rollup": "^2.33.2",
+    "rollup": "^2.52.7",
+    "rollup-plugin-inject-process-env": "^1.3.1",
     "rollup-plugin-postcss": "^3.1.8",
     "rollup-plugin-terser": "^7.0.2"
   },

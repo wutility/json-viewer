@@ -20,11 +20,6 @@ body {
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, .25) !important;
 }
 
-.jsv {
-  font-size: 13px;
-  font-family: consolas;
-}
-
 button,h1,
 h3,
 a {

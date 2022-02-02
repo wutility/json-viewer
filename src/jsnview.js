@@ -1,147 +1,97 @@
 function isObj (o) {
-  return o && typeof o === 'object' && o.constructor.name === "Object"
+  return o && typeof o === 'object' && o.constructor.name === 'Object'
 }
 
-function getValType (value) {
+function getType (value) {
   let isFloat = Number(value) === value && value % 1 !== 0;
   return isFloat ? 'float' : ({}).toString.call(value).match(/\s([a-zA-Z]+)/)[1].toLowerCase();
 }
 
-function createSpan (txt, className) {
-  let span = document.createElement('span');
-  span.textContent = txt;
-  span.classList.add(className);
-  return span;
+function createEl (el) {
+  return document.createElement(el);
 }
 
-export default function jsnview (data, { displayItemsLen = true, displayTypes = true } = {}) {
-  let options = { displayItemsLen, displayTypes };
-  let rootElement = document.createElement('ul');
-  rootElement.classList.add('jsv', 'p-0', 'm-0');
+let config = {
+  showLen: false,
+  showType: false,
+  colors: { boolean: '#ff2929', null: '#ff2929', string: '#690', number: '#905', float: '#002f99' }
+}
 
-  if (Array.isArray(data)) {
-    let ul = document.createElement('ul');
-    data.forEach(obj => {
-      render(ul, obj, null);
-    });
+export default function jsnview (data, options) {
+  config = { ...config, ...options };
+  const root = createEl('ul');
+  root.classList.add('jsv')
+  createTree({ data }, root, true);
+  return root
+}
 
-    let li = document.createElement('li');
-    li.prepend(createSpanFold('[', null, null, ul.children.length));
-    li.appendChild(ul);
-    li.appendChild(createSpanFold(null, ']', null));
-    rootElement.appendChild(li)
-  } else {
-    render(rootElement, data, null);
-  }
+function createTree (data, parentEl = null, isArray = false) {
+  let isOpen = false;
 
-  function createSpanFold (startDelimiter, endDelimiter, key, itemsLen = 0) {
-    let span = document.createElement('span');
+  for (const key in data) {
+    const li = createEl('li'),
+      value = data[key],
+      isArr = Array.isArray(value);
 
-    if (startDelimiter) {
-      span.classList.add('jsv-fold');
-      span.textContent = (key ? `"${key}": ` : '') + startDelimiter;
+    if (isObj(value) || isArr) {
+      const startDel = createEl('span');
+      startDel.classList.add('fold', 'open');
+      startDel.textContent = (isArray ? "" : `"${key}": `) + (isArr ? "[" : "{");
+      li.appendChild(startDel);
 
-      if (options.displayItemsLen) {
-        let spanItemsLen = createSpan(`${itemsLen} items`, 'jsv-items-len');
-        span.appendChild(spanItemsLen);
-      }
-    }
-    else {
-      span.classList.add('jsv-fold-end');
-      span.innerHTML = endDelimiter;
-    }
-
-    return span;
-  }
-
-  function createArr (rootElement, arr, key) {
-    const ul = document.createElement('ul');
-
-    for (let i = 0; i < arr.length; i++) {
-      const value = arr[i];
-      createListItems(ul, value, null);
-    }
-
-    const li = document.createElement('li');
-    li.appendChild(createSpanFold('[', null, key, ul.children.length));
-    li.appendChild(ul);
-    li.appendChild(createSpanFold(null, ']', key));
-    rootElement.appendChild(li)
-  }
-
-  function createListItems (parentElement, value, key) {
-
-    if (Array.isArray(value)) {
-      createArr(parentElement, value, null);
-    }
-    if (isObj(value)) {
-      render(parentElement, value, null);
-    }
-    if (!isObj(value) && !Array.isArray(value)) {
-      let typeValue = getValType(value);
-
-      value = typeof value === 'boolean' ? value : (value || typeValue);
-      let spanValue = createSpan(
-        typeValue === 'string' ? `"${value}"` : value,
-        `txt-${typeValue}`
-      );
-
-      if (options.displayTypes) {
-        let spanValueType = createSpan(options.displayTypes ? ` (${typeValue})` : '', 'txt-span-vtype');
-        spanValue.appendChild(spanValueType);
+      if (config.showLen) {
+        const spanLen = createEl('span');
+        const len = isArr ? value.length : Object.keys(value).length;
+        spanLen.classList.add('len');
+        spanLen.textContent = `${len} items`;
+        li.appendChild(spanLen)
       }
 
-      let li = document.createElement('li');
-      li.textContent = key ? `"${key}": ` : '';
-      li.appendChild(spanValue);
+      const ul = createEl('ul');
+      li.appendChild(ul);
 
-      parentElement.appendChild(li);
-    }
-  }
-
-  function render (rootElement, obj, parentKey) {
-
-    const ul = document.createElement('ul');
-
-    for (let [key, value] of Object.entries(obj)) {
-      if (!isObj(value) && !Array.isArray(value)) {
-        createListItems(ul, value, key)
-      }
-
-      if (Array.isArray(value)) {
-        createArr(ul, value, key, false);
-      }
-
-      if (isObj(value)) {
-        render(ul, value, key);
-      }
-    }
-
-    const li = document.createElement('li');
-    li.appendChild(createSpanFold('{', null, parentKey, ul.children.length));
-    li.appendChild(ul);
-    li.appendChild(createSpanFold(null, '}', null));
-    rootElement.appendChild(li);
-  }
-
-  function onToggleFold (e) {
-    let target = e.target, parentTarget = target.parentNode;
-
-    if (parentTarget.nodeName === 'LI' && target.classList.contains('jsv-fold')) {
-
-      let isClosed = target.classList.contains('jsv-fold-close');
-
-      for (let nodeEl of parentTarget.children) {
-        if (!nodeEl.classList.contains('jsv-fold') && !nodeEl.classList.contains('jsv-fold-end')) {
-          nodeEl.style.display = isClosed ? 'block' : 'none';
+      if (isArr) {
+        const np = createEl('ul');
+        for (let i = 0; i < value.length; i++) {
+          createTree(value[i], np, true);
         }
       }
 
-      target.classList.toggle('jsv-fold-close');
+      createTree(value, ul, isArr);
+
+      startDel.onclick = () => {
+        isOpen = !isOpen;
+        startDel.parentElement.querySelector('ul').style.display = isOpen ? 'none' : 'block';
+        startDel.classList.add(isOpen ? 'close' : 'open');
+        startDel.classList.remove(isOpen ? 'open' : 'close');
+      }
+
+      const endDel = createEl('span');
+      endDel.classList.add('fold');
+      endDel.textContent = isArr ? ']' : '}';
+      li.appendChild(endDel)
+      parentEl.appendChild(li);
+    }
+    else {
+      const spanVal = createEl('span'),
+        spanType = createEl('span'),
+        valType = getType(value);
+
+      spanVal.style.color = config.colors[valType];
+      spanVal.textContent = isNaN(value) ? `"${value}"` : value;
+
+      li.textContent += isArray ? "" : `"${key}": `;
+      li.appendChild(spanVal)
+
+      if (config.showType) {
+        spanType.classList.add('type');
+        spanType.textContent = `(${valType})`;
+        li.appendChild(spanType)
+      }
+
+      parentEl.appendChild(li)
     }
   }
 
-  rootElement.addEventListener('click', onToggleFold, false);
-
-  return rootElement;
+  return parentEl
 }

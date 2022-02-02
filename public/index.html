@@ -42,21 +42,20 @@
       </div>
 
       <div class="d-flex-col mr-10">
-        <label for="displayItemsLen">displayItemsLen</label>
-        <select name="displayItemsLen">
-          <option value="1">true</option>
+        <label for="showLen">showLen</label>
+        <select name="showLen">
           <option value="0">false</option>
+          <option value="1">true</option>
         </select>
       </div>
 
       <div class="d-flex-col mr-10">
-        <label for="displayTypes">displayTypes</label>
-        <select name="displayTypes">
-          <option value="1">true</option>
+        <label for="showType">showType</label>
+        <select name="showType">
           <option value="0">false</option>
+          <option value="1">true</option>
         </select>
       </div>
-
     </div>
 
     <button type="submit" class="w-100 mb-10">Load Json</button>
@@ -67,23 +66,20 @@
   <script>
     let root = document.getElementById('root');
 
+    // fetch from url
     document.getElementById('form-test').addEventListener('submit', (e) => {
       e.preventDefault()
 
       let jsonurl = e.target.elements[0].value;
-      let displayItemsLen = +e.target.elements[1].value;
-      let displayTypes = +e.target.elements[2].value;
+      let showType = +e.target.elements[2].value;
+      let showLen = +e.target.elements[1].value;
 
       root.innerHTML = '';
 
       fetch(jsonurl)
         .then(response => response.json())
-        .then(json => {
-          root.appendChild(jsnview(json, { displayItemsLen, displayTypes }));
-        })
-        .catch(e => {
-          console.log(e);
-        });
+        .then(json => { root.appendChild(jsnview(json, { showLen, showType })); })
+        .catch(e => { console.log(e); });
     })
   </script>
 </body>

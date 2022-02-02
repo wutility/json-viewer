@@ -13,9 +13,7 @@
 </div>
 
 ### Demos  
-[PLayground Netlify](https://json-v.netlify.app/public/)  
-[Demo JSBin UMD](https://jsbin.com/pekoyef/edit)  
-[Demo Codesandbox ESM](https://codesandbox.io/s/serverless-sound-igd1h)  
+[PLayground Netlify](https://json-v.netlify.app/public/)     
 [Demo React Codesandbox](https://codesandbox.io/s/winter-firefly-xb5jj)
 ```html
 $ npm i jsnview
@@ -31,20 +29,24 @@ import 'jsnview/build/index.css';
 
 Or include it via jsDelivr CDN (UMD):
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jsnview@1.0.6/build/index.css" />
-<script src="https://cdn.jsdelivr.net/npm/jsnview@1.0.6/build/index.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jsnview@2.0.0/build/index.css" />
+<script src="https://cdn.jsdelivr.net/npm/jsnview@2.0.0/build/index.min.js"></script>
 <!-- Access via global object : window.jsnview -->
 ```
 
 ### Methods && Examples
 - **jsnview(data: Object, options: Object): [HTMLElement]**  
-*Valid dataTypes: json, pure object or array*  
-*Default object options (optional): { displayItemsLen:true , displayTypes:true }*
 ```js
-let data = { name: 'Mike', age: 22 }; 
+// Default object options (optional)
+const options = {
+  showLen: false,
+  showType: false,
+  colors: { boolean: '#ff2929', null: '#ff2929', string: '#690', number: '#905', float: '#002f99' }
+}
 
-jsnview(data, { displayItemsLen: true , displayTypes: true });
-// returns HTMLElement
+let data = { name: 'Mike', age: 22 }; 
+const treeView = jsnview(data, options); // returns HTMLElement
+document.body.appendChild(treeView);
 ```
 
 ### Notes
