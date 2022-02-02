@@ -1,22 +1,24 @@
 import postcss from "rollup-plugin-postcss";
 import { terser } from "rollup-plugin-terser";
 
+const output = [
+  {
+    file: 'build/index.esm.js',
+    format: 'esm',
+    sourcemap: true,
+
+  },
+  {
+    name: 'jsnview',
+    file: 'build/index.js',
+    format: 'umd',
+    sourcemap: false
+  }
+];
+
 export default {
   input: "src/index.js",
-  output: [
-    {
-      file: 'build/index.esm.js',
-      format: 'esm',
-      sourcemap: true,
-
-    },
-    {
-      name: 'jsnview',
-      file: 'build/index.js',
-      format: 'umd',
-      sourcemap: false
-    }
-  ],
+  output,
   plugins: [
     postcss({
       babelrc: false,

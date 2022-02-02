@@ -11,3 +11,5 @@ testr/
 
 .cache
 .env
+
+yarn.lock
