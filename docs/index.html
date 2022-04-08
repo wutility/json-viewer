@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Ultra Fast and lightweight Json Viewer ~3KB 0 Dependencies">
+  <meta name="keywords" content="json,json viewer,json view,json editor,editor,javaScript">
+  <meta name="author" content="Haikel Fazzani">
+  <title>JsnView - Ultra Fast and lightweight Json Viewer</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="../build/index.css">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+</head>
+
+<body>
+  <script src="../build/index.js"></script>
+
+  <div class="w-100">
+    <header class="text-center">
+      <a href="https://github.com/haikelfazzani/json-view">{JsnView}</a> Ultra Fast and lightweight Json Viewer ~3KB
+    </header>
+
+    <div class="d-flex justify-center m-10">
+      <img src="https://badgen.net/bundlephobia/min/jsnview" alt="json viewer" />
+      <img src="https://badgen.net/bundlephobia/dependency-count/jsnview" alt="json viewer" />
+      <img src="https://badgen.net/npm/v/jsnview" alt="json viewer" />
+      <img src="https://badgen.net/npm/dt/jsnview" alt="json viewer" />
+    </div>
+
+    <pre>$ npm i jsnview</pre>
+
+    <form id="form-test">
+      <div class="d-flex-col mb-10">
+        <label>Enter Json URL</label>
+        <input type="url" name="jsonurl" class="w-100 mb-10" value="https://reqres.in/api/users?page=2"
+          placeholder="Load json from url.." />
+        <small>Urls for testing:</small>
+        <small>https://jsonplaceholder.typicode.com/todos/1</small>
+        <small>https://api.jsonbin.io/b/5fb2bd58dedba573f22230b7</small>
+        <small>https://api.jsonbin.io/b/5fb2be58dedba573f222310a</small>
+      </div>
+
+      <div class="w-100 d-flex justify-between">
+        <div class="d-flex-col mb-10">
+          <label for="showLen">showLen</label>
+          <select name="showLen">
+            <option value="0">false</option>
+            <option value="1">true</option>
+          </select>
+        </div>
+
+        <div class="d-flex-col mb-10">
+          <label for="showType">showType</label>
+          <select name="showType">
+            <option value="0">false</option>
+            <option value="1">true</option>
+          </select>
+        </div>
+
+        <div class="d-flex-col mb-10">
+          <label for="showBrackets">showBrackets</label>
+          <select name="showBrackets">
+            <option value="1">true</option>
+            <option value="0">false</option>
+          </select>
+        </div>
+
+        <div class="d-flex-col mb-10">
+          <label for="showFoldmarker">showFoldmarker</label>
+          <select name="showFoldmarker">
+            <option value="1">true</option>
+            <option value="0">false</option>
+          </select>
+        </div>
+      </div>
+
+      <button type="submit" class="w-100 mb-10">Load Json</button>
+    </form>
+  </div>
+
+  <div id="root">result here</div>
+
+  <script>
+    let root = document.getElementById('root');
+
+    // fetch from url
+    document.getElementById('form-test').addEventListener('submit', (e) => {
+      e.preventDefault()
+
+      let jsonurl = e.target.elements[0].value;
+
+      let showLen = +e.target.elements[1].value;
+      let showType = +e.target.elements[2].value;
+      let showBrackets = +e.target.elements[3].value;
+      let showFoldmarker = +e.target.elements[4].value;
+
+      root.innerHTML = '';
+
+      fetch(jsonurl)
+        .then(response => response.json())
+        .then(json => { root.appendChild(jsnview(json, { showLen, showType, showBrackets, showFoldmarker })); })
+        .catch(e => { console.log(e); });
+    })
+  </script>
+</body>
+
+</html>

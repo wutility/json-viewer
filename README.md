@@ -42,6 +42,8 @@ Or include it via jsDelivr CDN (UMD):
 const options = {
   showLen: false,
   showType: false,
+  showBrackets: true,
+  showFoldmarker: false,
   colors: { boolean: '#ff2929', null: '#ff2929', string: '#690', number: '#905', float: '#002f99' }
 }
 

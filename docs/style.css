@@ -3,39 +3,38 @@
 }
 
 body {
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
   background-color: #f1f1f1;
-  color: #000000;
-  font-family: Consolas, Georgia, Times, 'Times New Roman', serif;
+  color: #444;
+  font-family: "Open Sans", Consolas, Georgia, Times, 'Times New Roman', serif;
   margin: 0;
-  padding: 20px 80px 50px;
-  min-height: 110vh;
-  overflow-y: visible;
+  padding: 20px 30px;
 }
 
-#root {
+body>* {
+  height: 100%;
   background-color: #fff;
-  color: #000000;
+  color: #444;
   padding: 25px;
   border-radius: 7px;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, .25) !important;
+  border: 1px solid #ddd;
+  overflow: auto;
 }
 
 button,h1,
 h3,
 a {
   width: 100%;
-  text-align: center;
-  text-transform: uppercase;
-  letter-spacing: 1px;
+  text-transform: uppercase;  
 }
 
 a {
   color: #2d3748;
   text-decoration: none;
-}
-
-.w-100 {
-  width: 100%;
 }
 
 .mb-10 {
@@ -62,12 +61,16 @@ select {
 
 button {
   background-color: #2d3748;
-color: #fff;
+  color: #fff;
   cursor: pointer;
   outline:none;
 }
 
 button:hover {background-color:#202733;}
+
+small {font-size: 12px;}
+
+.w-100 {width: 100%;}
 
 .d-flex {
   display: flex;
@@ -86,15 +89,19 @@ button:hover {background-color:#202733;}
   justify-content: center;
 }
 
+.justify-between {justify-content: space-between;}
+
+.text-center {text-align: center;}
+
 pre {
   background-color: #2d3748;
-color: #ffffff;
-padding: 10px;
-border-radius: 7px;
-text-align: center;
-font-size: 16px;
-max-width: 420px;
-margin: 10px auto 20px;
+  color: #ffffff;
+  padding: 10px;
+  border-radius: 7px;
+  text-align: center;
+  font-size: 16px;
+  max-width: 420px;
+  margin: 10px auto 20px;
 }
 
 

@@ -23,6 +23,7 @@ helpers/
 util/
 public/
 testr/
+docs/
 
 CHANGELOG.md
 .cache

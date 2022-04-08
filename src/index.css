@@ -1,7 +1,8 @@
 * {
   box-sizing: border-box;
-  font-size: 14px;
-  font-family: consolas;
+  font-size: 16px;
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  letter-spacing: 0.6px;
 }
 
 .jsv ul {
@@ -11,40 +12,26 @@
   border-left: 1px dotted #888888;
 }
 
-.jsv li {
-  list-style: none;
-}
+.jsv li { list-style: none; }
 
-.jsv {
-  margin: 0;
-  padding: 0;
-  border: 0;
-}
+.jsv { margin: 0; padding: 0; border: 0; }
 
-.fold {
-  cursor: pointer;
-}
+.fold { cursor: pointer; }
 
 .open:before,
-.close::after {
+.close::after , .close:before{
   font-family: arial;
-  width: 1em;
+  font-size: 22px;
+  margin-right: 7px;
   cursor: pointer;
 }
 
-.open:before {
-  content: "\2BC6";
-  display: inline-block;
-}
+.open:before { content: attr(data-before); display: inline-block; }
 
-.close:before {
-  content: "\2BC8";
-}
+.close:before { content: attr(data-close); }
 
-.close::after {
-  content: "\2194";
-  margin-left: 2px;
-}
+/* foldmarker */
+.close::after { content: attr(data-after); font-size: 30px; margin-left: 7px; }
 
 .len,.type {margin-left: 5px;}
 

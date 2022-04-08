@@ -1,6 +1,9 @@
 import postcss from "rollup-plugin-postcss";
 import { terser } from "rollup-plugin-terser";
 
+const pkg = require('./package.json')
+const banner = `/*! jsnview - v${pkg.version} | Copyright 2022 - Haikel Fazzani */\n`;
+
 const output = [
   {
     file: 'build/index.esm.js',
@@ -12,7 +15,8 @@ const output = [
     name: 'jsnview',
     file: 'build/index.js',
     format: 'umd',
-    sourcemap: false
+    sourcemap: false,
+    banner
   }
 ];
 
