@@ -4,7 +4,6 @@ npm-debug.log*
 .babelrc
 rollup.config.js
 .whitesource
-node-rm.js
 
 coverage
 .nyc_output

@@ -22,13 +22,12 @@ let config = {
 export default function jsnview(data, options) {
   config = { ...config, ...options };
   const root = createEl('ul');
-  root.classList.add('jsv')
+  root.classList.add('jsv');
   createTree({ data }, root, true);
   return root
 }
 
 function createTree(data, parentEl = null, isArray = false) {
-  
   for (const key in data) {
     const li = createEl('li'),
     value = data[key],

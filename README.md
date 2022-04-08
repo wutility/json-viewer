@@ -38,7 +38,7 @@ Or include it via jsDelivr CDN (UMD):
 ### Methods && Examples
 - **jsnview(data: Object, options: Object): [HTMLElement]**  
 ```js
-// Default object options (optional)
+// Default options
 const options = {
   showLen: false,
   showType: false,

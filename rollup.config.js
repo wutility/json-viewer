@@ -1,5 +1,5 @@
-import postcss from "rollup-plugin-postcss";
 import { terser } from "rollup-plugin-terser";
+import postcss from "rollup-plugin-postcss";
 
 const pkg = require('./package.json')
 const banner = `/*! jsnview - v${pkg.version} | Copyright 2022 - Haikel Fazzani */\n`;
