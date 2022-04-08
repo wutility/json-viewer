@@ -33,7 +33,7 @@
 /* foldmarker */
 .close::after { content: attr(data-after); font-size: 30px; margin-left: 7px; }
 
-.len,.type {margin-left: 5px;}
+.len,.type { margin-left: 5px; }
 
 .type,
 .len,

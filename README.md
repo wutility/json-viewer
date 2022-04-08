@@ -13,7 +13,7 @@
 </div>
 
 ### Demos  
-[PLayground](https://json-v.netlify.app/public/)  
+[PLayground](https://wutility.github.io/json-viewer)  
 [Demo Codepen](https://codepen.io/haikelfazzani-the-bold/pen/bGWKEMP)  
 
 ```bash

@@ -1,11 +1,11 @@
 {
   "name": "jsnview",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "Ultra Fast and lightweight Json Viewer ~3KB with 0 Dependencies",
   "main": "build/index.js",
   "module": "build/index.esm.js",
   "scripts": {
-    "copy": "cp build/index.js docs/index.js",
+    "copy": "cp build/index.js docs/jsnview.min.js",
     "watch": "rollup -c -w && yarn copy",
     "build": "rollup -c && yarn copy"
   },
