@@ -1,6 +1,9 @@
 *.log
 npm-debug.log*
 
+# previous versions
+*-old
+
 # Dependency directories
 node_modules/
 
