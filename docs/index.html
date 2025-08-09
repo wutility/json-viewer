@@ -4,104 +4,93 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Ultra Fast and lightweight Json Viewer ~3KB 0 Dependencies">
-  <meta name="keywords" content="json,json viewer,json view,json editor,editor,javaScript">
-  <meta name="author" content="Haikel Fazzani">
-  <title>JsnView - Ultra Fast and lightweight Json Viewer</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="jsnview.min.css">
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+  <title>High-Performance JSON Viewer (Tailwind CSS)</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;500;700&display=swap"
+    rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+
+    .jsv {
+      font-family: 'Fira Code', monospace;
+    }
+  </style>
 </head>
 
-<body>
-  <script src="jsnview.min.js"></script>
+<body class="bg-gray-50 text-gray-800 p-4 sm:p-8">
 
-  <div class="w-100">
-    <header class="text-center">
-      <a href="https://github.com/haikelfazzani/json-view">{JsnView}</a> Ultra Fast and lightweight Json Viewer ~3KB
+  <div class="max-w-4xl mx-auto">
+    <header class="mb-6">
+      <h1 class="text-2xl sm:text-3xl font-bold text-gray-900">High-Performance JSON Viewer</h1>
+      <p class="mt-1 text-gray-600">A lightweight, dependency-free viewer styled with Tailwind CSS.</p>
     </header>
 
-    <div class="d-flex justify-center m-10">
-      <img src="https://badgen.net/bundlephobia/min/jsnview" alt="json viewer" />
-      <img src="https://badgen.net/bundlephobia/dependency-count/jsnview" alt="json viewer" />
-      <img src="https://badgen.net/npm/v/jsnview" alt="json viewer" />
-      <img src="https://badgen.net/npm/dt/jsnview" alt="json viewer" />
+    <!-- Controls for the viewer -->
+    <div class="flex space-x-2 mb-4">
+      <button id="collapse-btn"
+        class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition-colors">Collapse
+        All</button>
+      <button id="expand-btn"
+        class="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 transition-colors">Expand
+        All</button>
     </div>
 
-    <pre>$ npm i jsnview</pre>
-
-    <form id="form-test">
-      <div class="d-flex-col mb-10">
-        <label>Enter Json URL</label>
-        <input type="url" name="jsonurl" class="w-100 mb-10" value="https://reqres.in/api/users?page=2"
-          placeholder="Load json from url.." />
-        <small>Urls for testing:</small>
-        <small>https://jsonplaceholder.typicode.com/todos/1</small>
-        <small>https://api.jsonbin.io/b/5fb2bd58dedba573f22230b7</small>
-        <small>https://api.jsonbin.io/b/5fb2be58dedba573f222310a</small>
-      </div>
-
-      <div class="w-100 d-flex justify-between">
-        <div class="d-flex-col mb-10">
-          <label for="showLen">showLen</label>
-          <select name="showLen">
-            <option value="0">false</option>
-            <option value="1">true</option>
-          </select>
-        </div>
-
-        <div class="d-flex-col mb-10">
-          <label for="showType">showType</label>
-          <select name="showType">
-            <option value="0">false</option>
-            <option value="1">true</option>
-          </select>
-        </div>
-
-        <div class="d-flex-col mb-10">
-          <label for="showBrackets">showBrackets</label>
-          <select name="showBrackets">
-            <option value="1">true</option>
-            <option value="0">false</option>
-          </select>
-        </div>
-
-        <div class="d-flex-col mb-10">
-          <label for="showFoldmarker">showFoldmarker</label>
-          <select name="showFoldmarker">
-            <option value="1">true</option>
-            <option value="0">false</option>
-          </select>
-        </div>
-      </div>
-
-      <button type="submit" class="w-100 mb-10">Load Json</button>
-    </form>
+    <!-- This is where the JSON viewer will be injected -->
+    <div id="json-container" class="border border-gray-200 rounded-lg"></div>
   </div>
 
-  <div id="root">result here</div>
-
+  <script src="lib.js"></script>
   <script>
-    let root = document.getElementById('root');
+    const DEFAULT_CONFIG = {
+      showType: true,
+      showFoldmarker: true,
+      showLen: true,
+      collapsed: false,
+      maxDepth: Infinity,
+    };
 
-    // fetch from url
-    document.getElementById('form-test').addEventListener('submit', (e) => {
-      e.preventDefault()
+    function render(data, options) {
+      const instance = new jsnview(data, options);
+      return {
+        element: instance.getElement(),
+        collapseAll: () => instance.collapseAll(),
+        expandAll: () => instance.expandAll(),
+      };
+    }
 
-      let jsonurl = e.target.elements[0].value;
+    const sampleData = {
+      "id": "0001", "type": "donut", "name": "Cake", "ppu": 0.55, "available": true, "notes": null,
+      "batters": {
+        "batter": [
+          { "id": "1001", "type": "Regular" }, { "id": "1002", "type": "Chocolate" },
+          { "id": "1003", "type": "Blueberry" }, { "id": "1004", "type": "Devil's Food" }
+        ]
+      },
+      "topping": [
+        { "id": "5001", "type": "None" }, { "id": "5002", "type": "Glazed" },
+        { "id": "5005", "type": "Sugar" }, { "id": "5007", "type": "Powdered Sugar" },
+        { "id": "5006", "type": "Chocolate with Sprinkles" }, { "id": "5003", "type": "Chocolate" },
+        { "id": "5004", "type": "Maple" }
+      ],
+      "metadata": {
+        "version": 1.0, "author": "John Doe",
+        "nestedObject": {
+          "level1": { "level2": { "level3": "Deeply nested value", "anotherKey": [1, 2, 3, 4, 5] } }
+        }
+      }
+    };
 
-      let showLen = +e.target.elements[1].value;
-      let showType = +e.target.elements[2].value;
-      let showBrackets = +e.target.elements[3].value;
-      let showFoldmarker = +e.target.elements[4].value;
-
-      root.innerHTML = '';
-
-      fetch(jsonurl)
-        .then(response => response.json())
-        .then(json => { root.appendChild(jsnview(json, { showLen, showType, showBrackets, showFoldmarker })); })
-        .catch(e => { console.log(e); });
-    })
+    const viewer = render(sampleData, DEFAULT_CONFIG);
+    document.getElementById('json-container').appendChild(viewer.element);
+    document.getElementById('collapse-btn').addEventListener('click', () => viewer.collapseAll());
+    document.getElementById('expand-btn').addEventListener('click', () => viewer.expandAll());
   </script>
 </body>
 

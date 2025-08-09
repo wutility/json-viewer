@@ -1,20 +1,30 @@
 {
   "name": "jsnview",
-  "version": "2.0.4",
-  "description": "Ultra Fast and lightweight Json Viewer ~3KB with 0 Dependencies",
-  "main": "build/index.js",
-  "module": "build/index.esm.js",
+  "version": "3.0.0",
+  "description": "A lightweight, dependency-free JSON viewer that renders JSON data into a human-readable, collapsible tree. It is styled with Tailwind CSS for a modern look and feel.",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.es.js",
+  "types": "./dist/types/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/my-lib.es.js",
+      "require": "./dist/my-lib.umd.js",
+      "types": "./dist/types/index.d.ts"
+    }
+  },
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "copy-css": "cp build/index.css docs/jsnview.min.css",
-    "copy-js": "cp build/index.js docs/jsnview.min.js",
-    "watch": "rollup -c -w && yarn copy-js && yarn copy-css",
-    "build": "rollup -c && yarn copy-js && yarn copy-css"
+    "dev": "vite build --watch",
+    "build": "vite build",
+    "prepublishOnly": "npm run build"
   },
   "devDependencies": {
-    "rollup": "^2.70.1",
-    "rollup-plugin-inject-process-env": "^1.3.1",
-    "rollup-plugin-postcss": "^3.1.8",
-    "rollup-plugin-terser": "^7.0.2"
+    "typescript": "^5.9.2",
+    "vite": "^7.1.0",
+    "vite-plugin-dts": "^4.5.4"
   },
   "repository": {
     "type": "git",
