@@ -43,7 +43,7 @@ import jsnview from "jsnview";
 Or include it via jsDelivr CDN (UMD):
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/jsnview/build/index.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jsnview/dist/index.js"></script>
 <!-- Access via global object : window.jsnview -->
 ```
 
@@ -52,8 +52,6 @@ Or include it via jsDelivr CDN (UMD):
 Use the following code to initialize the viewer.
 
 ```javascript
-import Jsnview from "jsnview";
-
 const data = {
   key1: "value1",
   key2: 123,
@@ -66,56 +64,13 @@ const data = {
 
 const options = {
   collapsed: false,
-  showType: true,
+  showLen: true,
+  showType: false,
   showFoldmarker: true,
   maxDepth: Infinity,
 };
 
 const viewer = new Jsnview(data, options);
-```
-
-### TypeScript Integration
-
-You can easily use this library in a TypeScript project by declaring the
-function signature.
-
-```ts
-// 1. Declare the signature for the jsnview function
-declare function jsnview(
-  data: any,
-  options?: {
-    showType?: boolean;
-    showFoldmarker?: boolean;
-    showLen?: boolean;
-    collapsed?: boolean;
-    maxDepth?: number;
-  },
-): {
-  element: HTMLElement;
-  collapseAll: () => void;
-  expandAll: () => void;
-};
-
-// 2. Your application code
-const sampleData = {
-  id: "0001",
-  type: "donut",
-  name: "Cake",
-};
-
-const container = document.getElementById("json-container") as HTMLElement;
-const collapseBtn = document.getElementById("collapse-btn",) as HTMLButtonElement;
-const expandBtn = document.getElementById("expand-btn") as HTMLButtonElement;
-
-// Create the viewer instance
-const viewer = jsnview(sampleData, { collapsed: false });
-
-// Add the viewer to the DOM
-container.appendChild(viewer.element);
-
-// Wire up the controls
-collapseBtn.addEventListener("click", () => viewer.collapseAll());
-expandBtn.addEventListener("click", () => viewer.expandAll());
 ```
 
 ### Notes

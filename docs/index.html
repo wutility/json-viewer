@@ -48,14 +48,6 @@
 
   <script src="lib.js"></script>
   <script>
-    const DEFAULT_CONFIG = {
-      showType: true,
-      showFoldmarker: true,
-      showLen: true,
-      collapsed: false,
-      maxDepth: Infinity,
-    };
-
     function render(data, options) {
       const instance = new jsnview(data, options);
       return {
@@ -87,7 +79,7 @@
       }
     };
 
-    const viewer = render(sampleData, DEFAULT_CONFIG);
+    const viewer = render(sampleData);
     document.getElementById('json-container').appendChild(viewer.element);
     document.getElementById('collapse-btn').addEventListener('click', () => viewer.collapseAll());
     document.getElementById('expand-btn').addEventListener('click', () => viewer.expandAll());
