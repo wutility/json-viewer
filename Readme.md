@@ -43,7 +43,7 @@ import jsnview from "jsnview";
 Or include it via jsDelivr CDN (UMD):
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/jsnview/dist/index.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jsnview@3.0.0/dist/index.min.js"></script>
 <!-- Access via global object : window.jsnview -->
 ```
 

@@ -3,7 +3,6 @@ public/
 website/
 node_modules/
 src/
-dist/
 tests/
 docs/
 testr/
